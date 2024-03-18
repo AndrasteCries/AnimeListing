@@ -15,7 +15,7 @@ AnimeListing is a online resource dedicated to anime, providing an extensive dat
 ## Diagrams
 
 ### Database ER-diagram
-![DB ER-diagram](https://github.com/AndrasteCries/AnimeListing/raw/docs/ER_diagram_v1.png)
+![DB ER-diagram](https://github.com/AndrasteCries/AnimeListing/docs/ER_diagram_v1.png)
 
 ## Scripts
 
