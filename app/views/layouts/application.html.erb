@@ -6,11 +6,21 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "general", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
+  <div class="header">
+    <%= link_to "AniNyaListing", "#default", class: "logo" %>
+    <div class="header-right">
+      <%= link_to "Main", "#home", class: "active" %>
+      <%= link_to "Log in", "#contact" %>
+      <%= link_to "Sign in", "#about" %>
+    </div>
+  </div>
+  <div class="content">
     <%= yield %>
+  </div>
   </body>
 </html>
