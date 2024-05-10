@@ -14,9 +14,9 @@
   <div class="header">
     <%= link_to "AniNyaListing", "#default", class: "logo" %>
     <div class="header-right">
-      <%= link_to "Main", "#home", class: "active" %>
-      <%= link_to "Log in", "#contact" %>
-      <%= link_to "Sign in", "#about" %>
+      <%= link_to "Main", root_path, class: "active" %>
+      <%= link_to "Log in", new_user_session_path %>
+      <%= link_to "Sign in", new_user_registration_path %>
     </div>
   </div>
   <div class="content">
