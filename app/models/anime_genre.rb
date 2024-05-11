@@ -1,0 +1,2 @@
+class AnimeGenre < ApplicationRecord
+end
