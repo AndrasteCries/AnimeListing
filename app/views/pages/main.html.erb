@@ -1,6 +1,9 @@
 <div class="">
   <div class="container">
     <div class="row">
+      <% if user_signed_in? %>
+        <div> Welcome <%= current_user.email %> </div>
+      <% end %>
       <p>hello world</p>
     </div>
   </div>
