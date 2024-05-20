@@ -1,0 +1,2 @@
+class StudioAnime < ApplicationRecord
+end

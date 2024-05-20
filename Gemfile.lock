@@ -269,6 +269,7 @@ DEPENDENCIES
   capybara
   debug
   devise
+
   ffi (~> 1.16, >= 1.16.3)
   importmap-rails
   jbuilder

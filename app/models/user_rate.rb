@@ -1,0 +1,2 @@
+class UserRate < ApplicationRecord
+end

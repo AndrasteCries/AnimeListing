@@ -17,6 +17,7 @@ gem 'ffi', '~> 1.16', '>= 1.16.3'
 gem 'sassc-rails', '~> 2.1', '>= 2.1.2'
 gem "devise"
 
+
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
 end

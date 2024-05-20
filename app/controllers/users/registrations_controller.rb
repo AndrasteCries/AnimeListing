@@ -9,9 +9,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+
   # POST /resource
   def create
-    puts user_params
     @user = User.new(user_params)
     respond_to do |format|
       if @user.save

@@ -1,0 +1,2 @@
+class AnimeTag < ApplicationRecord
+end

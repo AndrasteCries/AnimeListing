@@ -7,4 +7,24 @@
       <p>hello world</p>
     </div>
   </div>
+  <h2> Users </h2>
+  <table>
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <% if user_signed_in? %>
+    <h1>HELLO MY DEAR FRIEND</h1>
+  <% end %>
 </div>
