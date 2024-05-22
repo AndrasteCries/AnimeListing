@@ -1,0 +1,63 @@
+
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+
+      <% if @anime.title_image.attached? %>
+        <div>
+          <%= image_tag @anime.title_image %>
+        </div>
+      <% end %>
+
+      <h1><%= @anime.name %></h1>
+
+      <div>
+        <strong>Description:</strong>
+        <%= @anime.description %>
+      </div>
+
+      <div>
+        <strong>Episodes:</strong>
+        <%= @anime.episodes %>
+      </div>
+
+      <div>
+        <strong>Duration:</strong>
+        <%= @anime.duration %>
+      </div>
+
+      <div>
+        <strong>Score:</strong>
+        <%= @anime.score %>
+      </div>
+
+      <div>
+        <strong>Popularity:</strong>
+        <%= @anime.popularity %>
+      </div>
+
+      <div>
+        <strong>Rating:</strong>
+        <%= @anime.rating %>
+      </div>
+
+      <div>
+        <strong>Y-Rating:</strong>
+        <%= @anime.yrating %>
+      </div>
+
+      <div>
+        <strong>Studio:</strong>
+        <%= @anime.studio_id %>
+      </div>
+
+      <div>
+        <strong>Status:</strong>
+        <%= @anime.status.capitalize %>
+      </div>
+
+      <%= link_to 'Edit', edit_anime_path(@anime) %> |
+      <%= link_to 'Back', animes_path %>
+    </div>
+  </div>
+</div>

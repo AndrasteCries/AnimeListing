@@ -1,0 +1,83 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+      <h1>Edit Anime</h1>
+
+      <%= form_with(model: @anime, local: true) do |form| %>
+        <% if @anime.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@anime.errors.count, "error") %> prohibited this anime from being saved:</h2>
+
+            <ul>
+              <% @anime.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="input-box">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :description  %>
+          <%= form.text_area :description, class: "input"%>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :episodes %>
+          <%= form.number_field :episodes, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :duration %>
+          <%= form.number_field :duration, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :score %>
+          <%= form.number_field :score, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :popularity %>
+          <%= form.number_field :popularity, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :rating %>
+          <%= form.number_field :rating, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :yrating %>
+          <%= form.number_field :yrating, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :studio_id %>
+          <%= form.number_field :studio_id, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :status %>
+          <%= form.select :status, Anime.statuses.keys.map { |status| [status.capitalize, status] }, {}, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :title_image %>
+          <%= form.file_field :title_image, class: "input" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      <% end %>
+
+      <%= link_to 'Show', @anime %> |
+      <%= link_to 'Back', animes_path %>
+    </div>
+  </div>
+</div>

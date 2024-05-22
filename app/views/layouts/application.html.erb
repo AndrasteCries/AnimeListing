@@ -21,8 +21,12 @@
         <button type="button" class="menu__icon icon-menu"><span></span></button>
         <nav class="menu__body">
           <ul class="menu__list">
-            <li class="menu__item"><a href="index.html" class="menu__link">Anime</a></li>
-            <li class="menu__item"><a href="about.html" class="menu__link">About us</a></li>
+            <li class="menu__item">
+              <%= link_to "Anime", animes_path, class: "user__action user__action--registration" %>
+            </li>
+            <li class="menu__item">
+              <a href="about.html" class="menu__link">About us</a>
+            </li>
           </ul>
           <div class="menu__user user">
             <a href="login.html" class="user__action user__action--login">Log in</a>
@@ -36,6 +40,7 @@
       </div>
       <div class="header__user user">
         <% if user_signed_in? %>
+          <%= link_to "Profile", user_profile_path(current_user.id), class: "user__action user__action--registration" %>
           <%= button_to "Sign out", destroy_user_session_path, class: "user__action user__action--registration", method: :delete %>
         <% else %>
           <%= link_to "Log in", new_user_session_path, class: "user__action user__action--login" %>

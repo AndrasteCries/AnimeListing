@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
-  # GET /resource/password/new
-  # def new
+  # GET /resource/password/new.html.erb
+  # def new.html.erb
   #   super
   # end
 

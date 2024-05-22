@@ -660,6 +660,86 @@ textarea.input {
     margin: 0 auto;
 }
 
+.body-user-page__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.body-user-page__content textarea {
+    height: 13.75rem;
+}
+
+.user-anime {
+    padding-top: 2.5rem;
+    padding-bottom: 1.875rem;
+}
+
+.user-anime__container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.875rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.input-box input {
+    padding-right: 2.5rem;
+    height: 2.5rem;
+}
+
+.input-box input:focus + svg * {
+    stroke: var(--blue) !important;
+}
+
+.input-box input:focus + svg {
+    -webkit-transform: translate(0, -50%) rotate(360deg) scale(1.1);
+    -ms-transform: translate(0, -50%) rotate(360deg) scale(1.1);
+    transform: translate(0, -50%) rotate(360deg) scale(1.1);
+}
+
+.input-box svg {
+    position: absolute;
+    top: 50%;
+    right: 0.625rem;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    width: 1.25rem;
+    height: 1.25rem;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.input-box svg * {
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
 @media (min-width: 47.99875em) {
     .menu__user {
         display: none !important;
@@ -669,6 +749,8 @@ textarea.input {
         grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     }
 }
+
+
 
 @media (min-width: 81.875em) {
     .button {

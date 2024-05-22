@@ -3,8 +3,12 @@ Rails.application.routes.draw do
     session: "users/sessions",
     registrations: "users/registrations"
   }
+
+  get "users/:id/", to: "user#show", as: :user_profile
+
   root "application#index"
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  resources :animes
 
+  get "up" => "rails/health#show", as: :rails_health_check
 end
