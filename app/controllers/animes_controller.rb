@@ -1,6 +1,6 @@
 class AnimesController < ApplicationController
   before_action :set_anime, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize_admin, only: [:new, :create, :edit, :update, :destroy]
   # GET /animes
   # GET /animes.json
   def index
@@ -71,6 +71,15 @@ class AnimesController < ApplicationController
   def anime_params
     params.require(:anime).permit(:name, :description, :episodes, :duration, :score,
                                   :popularity, :rating, :yrating, :studio_id, :status, :title_image)
+  end
+
+  def authorize_admin
+    unless current_user&.admin?
+      respond_to do |format|
+        format.html { redirect_to animes_path, alert: 'You are not authorized to perform this action.' }
+        format.json { render json: { error: 'Not Authorized' }, status: :forbidden }
+      end
+    end
   end
 
 end
