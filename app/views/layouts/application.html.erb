@@ -8,8 +8,9 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <link rel="shortcut icon" href="favicon.ico">
+  <%= favicon_link_tag asset_path('favicon.ico') %>
   <%= javascript_importmap_tags %>
+  <%= yield :javascript %>
 </head>
 
 <body>

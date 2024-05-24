@@ -1,6 +1,7 @@
 class UserController < ApplicationController
-    def show
+  def show
     @user = User.find(params[:id])
+    @animes = Anime.all
   end
 
 end

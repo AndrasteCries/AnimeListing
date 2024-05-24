@@ -1,24 +1,86 @@
 <div class="anime">
+  <section class="user-page">
     <div class="anime__container">
-        <div class="anime__body">
-          <h1>Name</h1>
-          <p><%= @user.name %></p>
-          <h1>Nickname</h1>
-          <p><%= @user.nickname %></p>
-          <h1>Birthday</h1>
-          <p><%= @user.birthday %></p>
-          <h1>Sex</h1>
-          <p><%= @user.sex %></p>
-          <h1>Location</h1>
-          <p><%= @user.location %></p>
-          <h1>Role</h1>
-          <p><%= @user.role %></p>
-          <h1>About</h1>
-          <p><%= @user.about %></p>
-          <h1>Last activity</h1>
-          <p><%= @user.last_sign_in_at %></p>
-          <h1>Name</h1>
-          <p><%= @user.name %></p>
-        </div>
+      <div class="anime__body">
+        <h1>Name</h1>
+        <p><%= @user.name %></p>
+        <h1>Nickname</h1>
+        <p><%= @user.nickname %></p>
+        <h1>Birthday</h1>
+        <p><%= @user.birthday %></p>
+        <h1>Sex</h1>
+        <p><%= @user.sex %></p>
+        <h1>Location</h1>
+        <p><%= @user.location %></p>
+        <h1>Role</h1>
+        <p><%= @user.role %></p>
+        <h1>About</h1>
+        <p><%= @user.about %></p>
+        <h1>Last activity</h1>
+        <p><%= @user.last_sign_in_at %></p>
+        <h1>Name</h1>
+        <p><%= @user.name %></p>
+      </div>
     </div>
+  </section>
+  <% if current_user.id == @user.id %>
+    <a href="#" data-popup="#popup-grade" class="grade button">Grade</a>
+  <% end %>
+  <section class="user-anime">
+    <div class="user-anime__container">
+      <div class="user-anime__body">
+        <% if @user.user_rates.any? %>
+          <ul class="user-anime-list">
+            <div class="user-anime-list__block">
+              <div class="user-anime-list__name">Anime</div>
+              <div class="user-anime-list__rate">Rating</div>
+              <div class="user-anime-list__genre">Status</div>
+            </div>
+            <% @user.user_rates.each do |user_rate| %>
+              <li class="user-anime-list__item">
+                <div class="user-anime-list__name"><%= user_rate.anime.name %></div>
+                <div class="user-anime-list__rate"><%= user_rate.score %></div>
+                <div class="user-anime-list__genre"><%= user_rate.status %></div>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No grades now.</p>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <div id="popup-grade" aria-hidden="true" class="popup-grade popup">
+    <div class="popup__wrapper">
+      <div class="popup__content">
+        <div class="popup-grade__body">
+          <div class="popup-grade__top">
+            <button data-close type="button" class="popup__close">Close</button>
+          </div>
+          <div class="popup-grade__content">
+            <%= form_with(model: UserRate.new, url: user_rates_path, method: "post", html: { class: "popup-grade__block" }) do |form| %>
+              <div class="input-box">
+                <%= form.label :anime_id, "Anime" %>
+                <%= form.select :anime_id, options_for_select(@animes.map { |anime| [anime.name, anime.id] }), { include_blank: true }, { class: "input", data: { scroll: "130", class_modif: "form" } } %>
+              </div>
+              <div class="input-box">
+                <%= form.label :score, "Score" %>
+                <%= form.select :score, (1..10).map { |value| [value, value] }, { include_blank: true }, { class: "input", data: { scroll: "130", class_modif: "form" } } %>
+              </div>
+              <div class="input-box">
+                <%= form.label :status, "Status" %>
+                <%= form.select :status, UserRate.statuses.keys.map { |status| [status.capitalize, status] }, { include_blank: true }, { class: "input" } %>
+              </div>
+              <%= form.hidden_field :user_id, value: current_user.id %>
+              <div class="actions">
+                <%= form.submit "Add", class: "button" %>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
