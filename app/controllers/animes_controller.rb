@@ -10,6 +10,7 @@ class AnimesController < ApplicationController
   # GET /animes/1
   # GET /animes/1.json
   def show
+    @comments = @anime.comments.order(created_at: :desc)
   end
 
   # GET /animes/new.html.erb

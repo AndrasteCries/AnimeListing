@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   root "application#index"
 
-  resources :animes
+  resources :animes do
+    resources :comments, only: :create
+  end
   resources :user_rates
 
   get "up" => "rails/health#show", as: :rails_health_check

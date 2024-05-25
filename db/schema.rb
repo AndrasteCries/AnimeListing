@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_24_124641) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_25_212102) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -128,11 +128,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_24_124641) do
 
   create_table "comments", force: :cascade do |t|
     t.text "text", null: false
-    t.datetime "date"
     t.bigint "anime_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["anime_id"], name: "index_comments_on_anime_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "forum_tags", force: :cascade do |t|
@@ -278,6 +279,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_24_124641) do
   add_foreign_key "anime_types", "types"
   add_foreign_key "animes", "studios"
   add_foreign_key "comments", "animes"
+  add_foreign_key "comments", "users"
   add_foreign_key "persons", "studios"
   add_foreign_key "reviews", "animes"
   add_foreign_key "studio_animes", "animes"

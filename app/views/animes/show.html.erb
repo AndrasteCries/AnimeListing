@@ -1,4 +1,3 @@
-
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
@@ -55,6 +54,35 @@
         <strong>Status:</strong>
         <%= @anime.status.capitalize %>
       </div>
+
+      <h2>Comments</h2>
+      <% if user_signed_in? %>
+        <%= form_with(model: [@anime, @anime.comments.build], local: true) do |form| %>
+          <div class="field">
+            <%= form.label :text, "Add comment" %><br>
+            <%= form.text_area :text %>
+          </div>
+          <div class="actions">
+            <%= form.submit "Send" %>
+          </div>
+        <% end %>
+      <% end %>
+      <% if @anime.comments.any? %>
+        <ul>
+          <% @anime.comments.each do |comment| %>
+            <li>
+              <% if comment.user.present? %>
+                <strong><%= comment.user.email %>:</strong>
+              <% else %>
+                <strong>Deleted user:</strong>
+              <% end %>
+              <%= comment.text %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No comments.</p>
+      <% end %>
 
       <%= link_to 'Edit', edit_anime_path(@anime) %> |
       <%= link_to 'Back', animes_path %>

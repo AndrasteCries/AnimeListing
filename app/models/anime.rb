@@ -5,6 +5,7 @@ class Anime < ApplicationRecord
   has_many :anime_tags
   has_many :anime_genres
   has_many :anime_types
+  has_many :comments, dependent: :destroy
 
 
   enum status: {
