@@ -1,0 +1,20 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+
+      <h1>Characters</h1>
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <%= link_to 'New Character', new_character_path %>
+        <% end %>
+      <% end %>
+      <ul>
+        <% @characters.each do |character| %>
+          <li>
+            <%= link_to character.name, character %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

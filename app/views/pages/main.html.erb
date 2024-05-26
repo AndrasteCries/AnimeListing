@@ -3,7 +3,6 @@
     <div class="anime__body">
       <% if user_signed_in? and current_user.admin? %>
         <h1> Hello admin</h1>
-        <%= link_to "Create anime", new_anime_path(), class: "user__action user__action--registration" %>
       <% elsif user_signed_in? %>
         <h1> Hello user</h1>
       <% end %>

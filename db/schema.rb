@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_25_212102) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_26_103153) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -121,7 +121,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_25_212102) do
     t.string "japanese"
     t.string "full_name"
     t.text "description"
-    t.integer "from"
+    t.integer "anime_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -252,7 +252,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_25_212102) do
     t.string "website"
     t.date "birthday"
     t.string "email", null: false
-    t.integer "role"
+    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "encrypted_password", default: "", null: false

@@ -55,6 +55,23 @@
         <%= @anime.status.capitalize %>
       </div>
 
+      <div>
+        <strong>Characters:</strong>
+        <% Rails.logger.debug "Anime characters: #{@anime.characters.inspect}" %>
+        <% if @anime.characters.any? %>
+          <p>Number of characters: <%= @anime.characters.count %></p>
+          <ul>
+            <% @anime.characters.each do |character| %>
+              <li>
+                <%= character.name %>
+              </li>
+            <% end %>
+          </ul>
+        <% else %>
+          <p>No characters.</p>
+        <% end %>
+      </div>
+
       <h2>Comments</h2>
       <% if user_signed_in? %>
         <%= form_with(model: [@anime, @anime.comments.build], local: true) do |form| %>

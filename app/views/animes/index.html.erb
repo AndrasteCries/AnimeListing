@@ -2,7 +2,11 @@
   <div class="anime__container">
     <div class="anime__body">
       <h1>Anime List</h1>
-
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
+          <%= link_to 'New anime', new_anime_path %>
+        <% end %>
+      <% end %>
       <table>
         <thead>
         <tr>
@@ -21,7 +25,7 @@
         <tbody>
         <% @animes.each do |anime| %>
           <tr>
-            <td><%= anime.name %></td>
+            <td><%= link_to anime.name, anime %></td>
             <td><%= anime.description %></td>
             <td><%= anime.episodes %></td>
             <td><%= anime.duration %></td>

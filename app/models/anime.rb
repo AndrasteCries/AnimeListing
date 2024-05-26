@@ -6,6 +6,8 @@ class Anime < ApplicationRecord
   has_many :anime_genres
   has_many :anime_types
   has_many :comments, dependent: :destroy
+  has_many :anime_characters
+  has_many :characters, through: :anime_characters
 
 
   enum status: {

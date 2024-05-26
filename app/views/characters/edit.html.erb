@@ -1,0 +1,45 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+      <%= form_with(model: @character) do |form| %>
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "input"  %>
+        </div>
+
+        <div class="field">
+          <%= form.label :japanese %>
+          <%= form.text_field :japanese, class: "input"  %>
+        </div>
+
+        <div class="field">
+          <%= form.label :full_name %>
+          <%= form.text_field :full_name, class: "input"  %>
+        </div>
+
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "input"  %>
+        </div>
+
+        <div class="field">
+          <%= form.label :image %>
+          <%= form.file_field :image, class: "input"  %>
+        </div>
+
+        <div class="field">
+          <div class="input-box">
+            <%= form.label :anime_ids, "Select Animes" %>
+            <%= form.select :anime_ids, Anime.all.map { |anime| [anime.name, anime.id] }, { include_blank: true }, { class: "input", multiple: true } %>
+          </div>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      <% end %>
+
+      <%= link_to 'Back', characters_path %>
+    </div>
+  </div>
+</div>

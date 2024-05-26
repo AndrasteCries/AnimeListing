@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :user_rates
   has_many :comments, dependent: :destroy
 
+  enum role: { user: 0, moderator: 1, admin: 2 }
+  
   def admin?
     role == 'admin'
   end
