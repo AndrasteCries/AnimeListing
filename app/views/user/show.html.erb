@@ -62,15 +62,15 @@
             <%= form_with(model: UserRate.new, url: user_rates_path, method: "post", html: { class: "popup-grade__block" }) do |form| %>
               <div class="input-box">
                 <%= form.label :anime_id, "Anime" %>
-                <%= form.select :anime_id, options_for_select(@animes.map { |anime| [anime.name, anime.id] }), { include_blank: true }, { class: "input", data: { scroll: "130", class_modif: "form" } } %>
+                <%= form.select :anime_id, options_for_select(@animes.map { |anime| [anime.name, anime.id] }), { include_blank: true }, { data: { scroll: "130", class_modif: "form" } } %>
               </div>
               <div class="input-box">
                 <%= form.label :score, "Score" %>
-                <%= form.select :score, (1..10).map { |value| [value, value] }, { include_blank: true }, { class: "input", data: { scroll: "130", class_modif: "form" } } %>
+                <%= form.select :score, (1..10).map { |value| [value, value] }, { include_blank: true }, { data: { scroll: "130", class_modif: "form" } } %>
               </div>
               <div class="input-box">
                 <%= form.label :status, "Status" %>
-                <%= form.select :status, UserRate.statuses.keys.map { |status| [status.capitalize, status] }, { include_blank: true }, { class: "input" } %>
+                <%= form.select :status, UserRate.statuses.keys.map { |status| [status.capitalize, status] }, { include_blank: true } %>
               </div>
               <%= form.hidden_field :user_id, value: current_user.id %>
               <div class="actions">
@@ -84,3 +84,7 @@
     </div>
   </div>
 </div>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'multyselect' %>
+<% end %>
