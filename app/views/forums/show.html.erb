@@ -1,0 +1,29 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+      <% if user_signed_in? %>
+        <%= link_to 'Start topic', new_topic_path %>
+      <% end %>
+      <% if @topics.any? %>
+        <table>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Body</th>
+            <th>Comments</th>
+          </tr>
+        </table>
+        <% @topics.each do |topic| %>
+          <tr>
+            <td><%= topic.id %></td>
+            <td><%= link_to topic.title, topic %></td>
+            <td><%= topic.title %></td>
+            <td><%= topic.body %></td>
+          </tr>
+        <% end %>
+      <% else %>
+        <h1>No topics yet</h1>
+      <% end %>
+    </div>
+  </div>
+</div>

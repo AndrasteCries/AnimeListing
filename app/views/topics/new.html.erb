@@ -1,0 +1,45 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+      <%= form_with(model: @topic) do |form| %>
+        <div class="input-box">
+          <%= form.label :title %>
+          <%= form.text_field :title, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :body %>
+          <%= form.text_area :body, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :image %>
+          <%= form.file_field :image, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :forum_id, "Forum" %>
+          <%= form.select :forum_id, options_for_select(Forum.all.map { |f| [f.title, f.id] }) %>
+        </div>
+
+
+        <div class="input-box">
+          <%= form.label :forum_tag_id, "Select tags" %>
+          <%= form.select :forum_tag_id, options_for_select(ForumTag.all.map { |tag| [tag.name, tag.id] },
+                                                             @topic.forum_tag_id), {},
+                          { multiple: true, data: { scroll: "130", class_modif: "form" } } %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      <% end %>
+
+      <%= link_to 'Back', @topic.forum_id.present? ? forum_path(@topic.forum_id) : forums_path %>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'multyselect' %>
+<% end %>

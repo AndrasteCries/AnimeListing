@@ -1,0 +1,14 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+      <% if @forums.any? %>
+        <% @forums.each do |forum| %>
+          <%= link_to forum.title, forum %>
+        <% end %>
+      <% else %>
+        <h1>No forums yet</h1>
+      <% end %>
+
+    </div>
+  </div>
+</div>

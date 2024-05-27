@@ -70,8 +70,8 @@ class ForumsController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
-  def topic_params
-    params.require(:forum).permit(:title, :body) # Add any other permitted attributes here
+  def forums_params
+    params.require(:forum).permit(:title, :position) # Add any other permitted attributes here
   end
 
   def authorize_user

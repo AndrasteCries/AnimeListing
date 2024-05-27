@@ -6,7 +6,6 @@ ActiveAdmin.register Topic do
     permitted
   end
 
-
   form do |f|
     f.inputs 'Topic Details' do
       f.input :title

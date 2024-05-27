@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_27_082229) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_27_212031) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -199,7 +199,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_082229) do
     t.bigint "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["topic_id"], name: "index_topic_comments_on_topic_id"
+    t.index ["user_id"], name: "index_topic_comments_on_user_id"
   end
 
   create_table "topic_tags", force: :cascade do |t|
@@ -217,6 +219,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_082229) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "forum_tag_id"
     t.index ["forum_id"], name: "index_topics_on_forum_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end

@@ -3,15 +3,13 @@ class TopicsController < ApplicationController
   before_action :authorize_user, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /topics
-  # GET /topics.json
   def index
     @topics = Topic.all
   end
 
   # GET /topics/1
-  # GET /topics/1.json
   def show
-    @comments = @topic.comments.order(created_at: :desc)
+    @comments = @topic.topic_comments.order(created_at: :desc)
   end
 
   # GET /topics/new
@@ -24,9 +22,9 @@ class TopicsController < ApplicationController
   end
 
   # POST /topics
-  # POST /topics.json
   def create
     @topic = Topic.new(topic_params)
+    @topic.user = current_user
 
     respond_to do |format|
       if @topic.save
@@ -40,7 +38,6 @@ class TopicsController < ApplicationController
   end
 
   # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
   def update
     respond_to do |format|
       if @topic.update(topic_params)
@@ -54,7 +51,6 @@ class TopicsController < ApplicationController
   end
 
   # DELETE /topics/1
-  # DELETE /topics/1.json
   def destroy
     @topic.destroy
     respond_to do |format|
@@ -71,7 +67,7 @@ class TopicsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def topic_params
-    params.require(:topic).permit(:title, :body) # Add any other permitted attributes here
+    params.require(:topic).permit(:title, :body, :forum_id, :image, forum_tag_ids: [])
   end
 
   def authorize_user

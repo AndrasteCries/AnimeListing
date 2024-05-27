@@ -1,0 +1,62 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+
+      <% if @topic.image.attached? %>
+        <div>
+          <%= image_tag @topic.image %>
+        </div>
+      <% end %>
+
+      <h1><%= @topic.title %></h1>
+
+      <div>
+        <strong>body:</strong>
+        <%= @topic.body %>
+      </div>
+
+      <div>
+        <strong>tags:</strong>
+        <% if @topic.topic_tags.any? %>
+          <% @topic.topic_tags.each do |tag| %>
+            <% tag.name %>
+          <% end %>
+        <% else %>
+          <p> No tags</p>
+        <% end %>
+      </div>
+
+      <h2>Comments</h2>
+      <% if user_signed_in? %>
+        <%= form_with(model: [@topic, @topic.topic_comments.build], local: true) do |form| %>
+          <div class="field">
+            <%= form.label :text, "Add comment" %><br>
+            <%= form.text_area :text %>
+          </div>
+          <div class="actions">
+            <%= form.submit "Send" %>
+          </div>
+        <% end %>
+      <% end %>
+      <% if @topic.topic_comments.any? %>
+        <ul>
+          <% @topic.topic_comments.each do |comment| %>
+            <li>
+              <% if comment.user.present? %>
+                <strong><%= comment.user.email %>:</strong>
+              <% else %>
+                <strong>Deleted user:</strong>
+              <% end %>
+              <%= comment.text %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No comments.</p>
+      <% end %>
+
+      <%= link_to 'Edit', edit_topic_path(@topic) %> |
+      <%= link_to 'Back', forum_path(@topic.forum) %>
+    </div>
+  </div>
+</div>

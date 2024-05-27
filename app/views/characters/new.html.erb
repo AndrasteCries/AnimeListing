@@ -27,11 +27,11 @@
           <%= form.file_field :image, class: "input" %>
         </div>
 
-        <div class="field">
-          <div class="input-box">
-            <%= form.label :anime_ids, "Select Animes" %>
-            <%= form.select :anime_ids, Anime.all.map { |anime| [anime.name, anime.id] }, { include_blank: true }, { class: "input", multiple: true } %>
-          </div>
+        <div class="input-box">
+          <%= form.label :anime_ids, "Select Animes" %>
+          <%= form.select :anime_ids, options_for_select(Anime.all.map { |anime| [anime.name, anime.id] },
+                                                         @character.anime_ids), {},
+                          { multiple: true, data: { scroll: "130", class_modif: "form" } } %>
         </div>
 
         <div class="actions">
@@ -43,3 +43,7 @@
     </div>
   </div>
 </div>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'multyselect' %>
+<% end %>
