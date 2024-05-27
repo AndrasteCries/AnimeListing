@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     session: "users/sessions",
     registrations: "users/registrations"
   }
+  resources :topics
+  resources :forums
   resources :characters
   resources :animes do
     resources :comments, only: :create

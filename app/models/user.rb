@@ -14,4 +14,13 @@ class User < ApplicationRecord
   def admin?
     role == 'admin'
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    [
+      "about", "birthday", "created_at", "current_sign_in_at", "current_sign_in_ip",
+      "email", "encrypted_password", "id", "id_value", "last_sign_in_at", "last_sign_in_ip",
+      "location", "name", "nickname", "remember_created_at", "reset_password_sent_at",
+      "reset_password_token", "role", "sex", "updated_at", "website",
+    ]
+  end
 end
