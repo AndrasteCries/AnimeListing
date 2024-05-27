@@ -1,0 +1,2 @@
+class ForumTag < ApplicationRecord
+end
