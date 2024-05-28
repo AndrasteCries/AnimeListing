@@ -3,8 +3,11 @@ class Anime < ApplicationRecord
   has_one_attached :title_image
   has_many :user_rates
   has_many :anime_tags
+  has_many :tags, through: :anime_tags
   has_many :anime_genres
+  has_many :genres, through: :anime_genres
   has_many :anime_types
+  has_many :types, through: :anime_types
   has_many :comments, dependent: :destroy
   has_many :anime_characters
   has_many :characters, through: :anime_characters

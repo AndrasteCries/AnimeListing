@@ -22,8 +22,8 @@
         </div>
 
         <div class="input-box">
-          <%= form.label :description  %>
-          <%= form.text_area :description, class: "input"%>
+          <%= form.label :description %>
+          <%= form.text_area :description, class: "input" %>
         </div>
 
         <div class="input-box">
@@ -69,6 +69,30 @@
         <div class="input-box">
           <%= form.label :title_image %>
           <%= form.file_field :title_image, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :tags, "Select Tags" %><br>
+          <% @tags.each do |tag| %>
+            <%= check_box_tag "anime[tag_ids][]", tag.id, @anime.tags.include?(tag), id: "tag_#{tag.id}" %>
+            <%= label_tag "tag_#{tag.id}", tag.name %><br>
+          <% end %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :types, "Select Types" %><br>
+          <% @types.each do |type| %>
+            <%= check_box_tag "anime[type_ids][]", type.id, @anime.types.include?(type), id: "type_#{type.id}" %>
+            <%= label_tag "type_#{type.id}", type.name %><br>
+          <% end %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :genres, "Select Genres" %><br>
+          <% @genres.each do |genre| %>
+            <%= check_box_tag "anime[genre_ids][]", genre.id, @anime.genres.include?(genre), id: "genre_#{genre.id}" %>
+            <%= label_tag "genre_#{genre.id}", genre.name %><br>
+          <% end %>
         </div>
 
         <div class="actions">

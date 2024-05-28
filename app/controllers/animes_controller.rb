@@ -16,10 +16,16 @@ class AnimesController < ApplicationController
   # GET /animes/new.html.erb
   def new
     @anime = Anime.new
+    @tags = Tag.all
+    @types = Type.all
+    @genres = Genre.all
   end
 
   # GET /animes/1/edit
   def edit
+    @tags = Tag.all
+    @types = Type.all
+    @genres = Genre.all
   end
 
   # POST /animes
@@ -39,10 +45,13 @@ class AnimesController < ApplicationController
   end
 
   # PATCH/PUT /animes/1
-  # PATCH/PUT /animes/1.json
   def update
     respond_to do |format|
       if @anime.update(anime_params)
+        @anime.tags = Tag.where(id: params[:anime].fetch(:tag_ids, []).reject(&:blank?))
+        @anime.types = Type.where(id: params[:anime].fetch(:type_ids, []).reject(&:blank?))
+        @anime.genres = Genre.where(id: params[:anime].fetch(:genre_ids, []).reject(&:blank?))
+
         format.html { redirect_to @anime, notice: 'Anime was successfully updated.' }
         format.json { render :show, status: :ok, location: @anime }
       else
@@ -51,6 +60,7 @@ class AnimesController < ApplicationController
       end
     end
   end
+
 
   # DELETE /animes/1
   # DELETE /animes/1.json
@@ -71,7 +81,8 @@ class AnimesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def anime_params
     params.require(:anime).permit(:name, :description, :episodes, :duration, :score,
-                                  :popularity, :rating, :yrating, :studio_id, :status, :title_image)
+                                  :popularity, :rating, :yrating, :studio_id, :status, :title_image,
+                                  tag_ids: [], type_ids: [], genre_ids: [])
   end
 
   def authorize_admin

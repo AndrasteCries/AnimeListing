@@ -56,6 +56,33 @@
       </div>
 
       <div>
+        <strong>Tags:</strong>
+        <ul>
+          <% @anime.tags.each do |tag| %>
+            <li><%= tag.name %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
+        <strong>Genres:</strong>
+        <ul>
+          <% @anime.genres.each do |genre| %>
+            <li><%= genre.name %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
+        <strong>Types:</strong>
+        <ul>
+          <% @anime.types.each do |type| %>
+            <li><%= type.name %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div>
         <strong>Characters:</strong>
         <% Rails.logger.debug "Anime characters: #{@anime.characters.inspect}" %>
         <% if @anime.characters.any? %>
