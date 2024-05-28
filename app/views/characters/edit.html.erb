@@ -2,7 +2,7 @@
   <div class="anime__container">
     <div class="anime__body">
       <%= form_with(model: @character) do |form| %>
-        <div class="input-box"
+        <div class="input-box">
           <%= form.label :name %>
           <%= form.text_field :name, class: "input" %>
         </div>
@@ -22,10 +22,10 @@
           <%= form.text_area :description, class: "input" %>
         </div>
 
-<!--        <div class="input-box">-->
-          <%#= form.label :image %>
-          <%#= form.file_field :image, class: "input" %>
-<!--        </div>-->
+        <div class="input-box">
+          <%= form.label :image %>
+          <%= form.file_field :image, class: "input" %>
+        </div>
 
         <div class="input-box">
           <%= form.label :anime_ids, "Select Animes" %>

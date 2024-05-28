@@ -24,9 +24,9 @@
 
 
         <div class="input-box">
-          <%= form.label :forum_tag_id, "Select tags" %>
-          <%= form.select :forum_tag_id, options_for_select(ForumTag.all.map { |tag| [tag.name, tag.id] },
-                                                            @topic.forum_tag_id), {},
+          <%= form.label :forum_tag_ids, "Select tags" %>
+          <%= form.select :forum_tag_ids, options_for_select(ForumTag.all.map { |tag| [tag.name, tag.id] },
+                                                            @topic.topic_tags), {},
                           { multiple: true, data: { scroll: "130", class_modif: "form" } } %>
         </div>
 

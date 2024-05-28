@@ -1,5 +1,4 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /topics
@@ -9,17 +8,16 @@ class TopicsController < ApplicationController
 
   # GET /topics/1
   def show
+    @topic = Topic.find(params[:id])
     @comments = @topic.topic_comments.order(created_at: :desc)
   end
 
   # GET /topics/new
   def new
     @topic = Topic.new
+    @forum_tags = ForumTag.all
   end
 
-  # GET /topics/1/edit
-  def edit
-  end
 
   # POST /topics
   def create
@@ -37,8 +35,16 @@ class TopicsController < ApplicationController
     end
   end
 
+  # GET /topics/1/edit
+  def edit
+    @topic = Topic.find(params[:id])
+    @forum_tags = ForumTag.all
+  end
+
+
   # PATCH/PUT /topics/1
   def update
+    @topic = Topic.find(params[:id])
     respond_to do |format|
       if @topic.update(topic_params)
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
@@ -52,6 +58,7 @@ class TopicsController < ApplicationController
 
   # DELETE /topics/1
   def destroy
+    @topic = Topic.find(params[:id])
     @topic.destroy
     respond_to do |format|
       format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
@@ -60,11 +67,6 @@ class TopicsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
-  def set_topic
-    @topic = Topic.find(params[:id])
-  end
-
   # Only allow a list of trusted parameters through.
   def topic_params
     params.require(:topic).permit(:title, :body, :forum_id, :image, forum_tag_ids: [])

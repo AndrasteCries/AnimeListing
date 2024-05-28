@@ -17,9 +17,11 @@
 
       <div>
         <strong>tags:</strong>
-        <% if @topic.topic_tags.any? %>
-          <% @topic.topic_tags.each do |tag| %>
-            <% tag.name %>
+        <% if @topic.forum_tags.any? %>
+          <% @topic.forum_tags.each do |tag| %>
+            <li>
+              <%= tag.name %>
+            </li>
           <% end %>
         <% else %>
           <p> No tags</p>

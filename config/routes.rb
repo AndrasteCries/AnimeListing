@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :topic_comments, only: :create
   end
   resources :forums
+  resources :forum_tags
   resources :characters
   resources :animes do
     resources :comments, only: :create

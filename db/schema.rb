@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_27_212031) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_28_131110) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -206,9 +206,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_212031) do
 
   create_table "topic_tags", force: :cascade do |t|
     t.bigint "topic_id"
-    t.bigint "forum_tags_id"
-    t.index ["forum_tags_id"], name: "index_topic_tags_on_forum_tags_id"
-    t.index ["topic_id", "forum_tags_id"], name: "index_topic_tags_on_topic_id_and_forum_tags_id", unique: true
+    t.bigint "forum_tag_id"
+    t.index ["forum_tag_id"], name: "index_topic_tags_on_forum_tag_id"
+    t.index ["topic_id", "forum_tag_id"], name: "index_topic_tags_on_topic_id_and_forum_tag_id", unique: true
     t.index ["topic_id"], name: "index_topic_tags_on_topic_id"
   end
 
@@ -288,7 +288,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_27_212031) do
   add_foreign_key "studio_animes", "animes"
   add_foreign_key "studio_animes", "studios"
   add_foreign_key "topic_comments", "topics"
-  add_foreign_key "topic_tags", "forum_tags", column: "forum_tags_id"
+  add_foreign_key "topic_tags", "forum_tags"
   add_foreign_key "topic_tags", "topics"
   add_foreign_key "topics", "forums"
   add_foreign_key "topics", "users"

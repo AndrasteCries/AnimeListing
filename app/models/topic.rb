@@ -3,8 +3,8 @@ class Topic < ApplicationRecord
 
   belongs_to :user
   belongs_to :forum
-  has_many :forum_tags, through: :topic_tags
   has_many :topic_tags
+  has_many :forum_tags, through: :topic_tags
   has_many :topic_comments, dependent: :destroy
 
   has_one_attached :image
@@ -17,10 +17,12 @@ class Topic < ApplicationRecord
     ["forum", "forum_tag", "image_attachment", "image_blob", "topic_comments", "topic_tags", "user"]
   end
 
+  private
+
   def create_associated_topic_tags
-    if self.forum_tag_id.present?
-      self.forum_tag_id.each do |tag_id|
-        TopicTag.create(forum_tag_id: tag_id, topic_id: self.id)
+    if self.forum_tag_ids.present?
+      self.forum_tag_ids.each do |tag_id|
+        TopicTag.create(forum_tags_id: tag_id, topic_id: self.id)
       end
     end
   end
