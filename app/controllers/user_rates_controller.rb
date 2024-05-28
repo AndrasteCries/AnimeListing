@@ -17,14 +17,14 @@ class UserRatesController < ApplicationController
     @user_rate = UserRate.new(user_rate_params)
     if user_already_rated_anime?
       flash[:alert] = "You have already rated this anime."
-      redirect_to root_path
+      redirect_to user_profile_path(@user_rate.user_id)
     else
       respond_to do |format|
         if @user_rate.save
           format.html { redirect_to user_profile_path(@user_rate.user_id), notice: 'User rate was successfully created.' }
           format.turbo_stream
         else
-          format.html { redirect_to root_path, alert: @user_rate.errors.full_messages.join(", ") }
+          format.html { redirect_to user_profile_path(@user_rate.user_id), alert: @user_rate.errors.full_messages.join(", ") }
         end
       end
     end
@@ -57,11 +57,11 @@ class UserRatesController < ApplicationController
   end
 
   def user_rate_params
-    params.require(:user_rate).permit(:anime_id, :score, :status, :user_id)
+    params.require(:user_rate).permit(:anime_id, :score, :status, :episodes, :user_id)
   end
 
   def authorize_user
-    unless current_user?
+    unless current_user
       respond_to do |format|
         format.html { redirect_to root_path, alert: 'You are not authorized to perform this action.' and return }
         format.json { render json: { error: 'Not Authorized' }, status: :forbidden and return }

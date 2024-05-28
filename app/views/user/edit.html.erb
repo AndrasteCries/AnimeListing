@@ -1,0 +1,66 @@
+<div class="anime">
+  <section class="user-page">
+    <div class="anime__container">
+      <div class="anime__body">
+        <h1 class="title-small">Edit Profile</h1>
+
+        <%= form_with(model: @user, local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
+          <% if @user.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="input-box">
+            <%= form.label :name %>
+            <%= form.text_field :name, class: "input" %>
+          </div>
+
+          <div class="input-box">
+            <%= form.label :nickname %>
+            <%= form.text_field :nickname, class: "input" %>
+          </div>
+
+          <div class="input-box">
+            <%= form.label :birthday %>
+            <%= form.date_field :birthday, class: "input" %>
+          </div>
+
+          <div class="input-box">
+            <%= form.label :sex %>
+            <%= form.select :sex, ["Male", "Female"], { include_blank: true }, class: "input" %>
+          </div>
+
+          <div class="input-box">
+            <%= form.label :location %>
+            <%= form.text_field :location, class: "input" %>
+          </div>
+
+          <div class="input-box">
+            <%= form.label :about %>
+            <%= form.text_area :about, class: "input" %>
+          </div>
+
+          <label class="input-box input-box--file ">
+            <%= form.label :image %>
+            <%= form.file_field :image %>
+            <div class="button"> Upload image</div>
+          </label>
+
+          <div class="actions">
+            <%= form.submit 'Update', class: "button" %>
+          </div>
+        <% end %>
+        <div class="button-center">
+          <%= link_to 'Back', user_path(@user), class: "button" %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

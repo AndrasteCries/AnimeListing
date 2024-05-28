@@ -184,6 +184,11 @@ body {
     width: 100%;
 }
 
+textarea.input {
+    resize: none;
+    height: 150px;
+}
+
 input[type=text],
 input[type=email],
 input[type=tel],
@@ -196,7 +201,8 @@ textarea {
 .input {
     border-radius: 6px;
     width: 100%;
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 5px 20px;
     outline: 1px solid var(--primary);
     background-color: var(--primary);
@@ -252,11 +258,6 @@ textarea {
 
 .input[placeholder]:not([data-placeholder-nohiden]):focus::placeholder {
     opacity: 0;
-}
-
-textarea.input {
-    resize: none;
-    padding: 0px 0px;
 }
 
 .menu {
@@ -372,6 +373,39 @@ textarea.input {
     gap: 0.625rem;
 }
 
+.input-box--file {
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.actions .button{
+    color: white;
+}
+
+.input-box--file .button {
+    max-width: none;
+}
+
+.button-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.input-box--file input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
 .input-box input {
     padding-right: 2.5rem;
     height: 2.5rem;
@@ -472,12 +506,12 @@ textarea.input {
 }
 
 .anime {
-    padding-top: 6.25rem;
+    padding-top: 3.25rem;
     padding-bottom: 1.875rem;
 }
 
 .anime__body {
-    padding: 1.25rem;
+    padding: 1.25rem 70px;
     border-radius: 1rem;
     background-color: var(--secondary);
     display: -webkit-box;
@@ -487,7 +521,44 @@ textarea.input {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 30px;
+}
+
+.input {
+    height: 40px;
+}
+
+.anime__block {
+    justify-items: center;
+    gap: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.anime__block .input-box {
+    width: 100%;
+    flex: 1 1 50%;
+}
+
+.anime__top {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.anime__top-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    gap: 10px;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
 }
 
 .anime__body .input-box {
@@ -676,7 +747,6 @@ textarea.input {
 }
 
 .user-anime {
-    padding-top: 2.5rem;
     padding-bottom: 1.875rem;
 }
 
@@ -749,7 +819,6 @@ textarea.input {
         grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     }
 }
-
 
 
 @media (min-width: 81.875em) {
@@ -899,15 +968,15 @@ textarea.input {
 
 @supports (font-size: clamp(1rem , calc(0.9595959596rem + 0.202020202 * 100vw), 1.125rem)) {
     .button {
-        font-size: clamp(1rem , calc(0.9595959596rem + 0.202020202 * 100vw), 1.125rem);
+        font-size: clamp(1rem, calc(0.9595959596rem + 0.202020202 * 100vw), 1.125rem);
     }
 
     .title {
-        font-size: clamp(1.5rem , calc(1.2777777778rem + 1.1111111111vw), 2.1875rem);
+        font-size: clamp(1.5rem, calc(1.2777777778rem + 1.1111111111vw), 2.1875rem);
     }
 
     .item-anime__name {
-        font-size: clamp(1rem , calc(0.9595959596rem + 0.202020202 * 100vw), 1.125rem);
+        font-size: clamp(1rem, calc(0.9595959596rem + 0.202020202 * 100vw), 1.125rem);
     }
 }
 
@@ -924,7 +993,6 @@ textarea.input {
         font-size: calc(1rem + 0.125 * (100vw - 20rem) / 61.875);
     }
 }
-
 
 
 @media (any-hover: hover) {
@@ -1279,6 +1347,13 @@ body::after {
     gap: 1.25rem;
 }
 
+.grade-button {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .user-anime__container {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1291,7 +1366,16 @@ body::after {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+
 }
+
+/*.anime__container{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    gap: 1.875rem;*/
+/*    width: 100%;*/
+/*}*/
 
 .user-anime__body {
     width: 100%;
@@ -1323,7 +1407,7 @@ body::after {
     display: -ms-grid;
     display: grid;
     /*-ms-grid-columns: (1fr)[3];*/
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     justify-items: center;
     -webkit-box-align: center;
     -ms-flex-align: center;
@@ -1339,9 +1423,9 @@ body::after {
     display: grid;
     justify-items: center;
     /*-ms-grid-columns: (1fr)[3];*/
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    padding: 1.25rem 0;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.1rem;
+    padding: 0.1rem 0;
 }
 
 @media (min-width: 47.99875em) {
@@ -1356,4 +1440,101 @@ body::after {
     .body-user-page__content textarea {
         max-width: calc(50% - 10px);
     }
+}
+
+.user-page {
+    padding-top: 2.5rem;
+    padding-bottom: 1.875rem;
+}
+
+.user-page__container {
+    width: 100%;
+}
+
+.title-small {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.body-user-page {
+    width: 100%;
+    background-color: var(--secondary);
+    padding: 1.25rem;
+    border-radius: 1.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1.875rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.body-user-page__top {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    gap: 1.25rem;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: end;
+}
+
+.body-user-page__image-wrapper {
+    margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.body-user-page__image-wrapper .user-page__image-input {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.body-user-page__image {
+    max-width: 20rem;
+    aspect-ratio: 1/1;
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.body-user-page__image img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.body-user-page__block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+
+.body-user-page__content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.25rem;
 }
