@@ -1,7 +1,8 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <%= form_with(model: @topic) do |form| %>
+      <h1 class="title-small">New topic</h1>
+      <%= form_with(model: @topic, local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
         <div class="input-box">
           <%= form.label :title %>
           <%= form.text_field :title, class: "input" %>
@@ -12,10 +13,11 @@
           <%= form.text_area :body, class: "input" %>
         </div>
 
-        <div class="input-box">
+        <label class="input-box input-box--file ">
           <%= form.label :image %>
-          <%= form.file_field :image, class: "input" %>
-        </div>
+          <%= form.file_field :image %>
+          <div class="button"> Upload image</div>
+        </label>
 
         <div class="input-box">
           <%= form.label :forum_id, "Forum" %>
@@ -31,11 +33,12 @@
         </div>
 
         <div class="actions">
-          <%= form.submit %>
+          <%= form.submit 'Create', class: "button" %>
         </div>
       <% end %>
-
-      <%= link_to 'Back', @topic.forum_id.present? ? forum_path(@topic.forum_id) : forums_path %>
+      <div class="button-center">
+        <%= link_to 'Back', @topic.forum_id.present? ? forum_path(@topic.forum_id) : forums_path, class: "button" %>
+      </div>
     </div>
   </div>
 </div>

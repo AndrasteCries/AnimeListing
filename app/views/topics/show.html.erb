@@ -3,53 +3,67 @@
     <div class="anime__body">
 
       <% if @topic.image.attached? %>
-        <div>
+        <div class="topic__image">
           <%= image_tag @topic.image %>
         </div>
       <% end %>
 
-      <h1><%= @topic.title %></h1>
-
-      <div>
-        <strong>body:</strong>
-        <%= @topic.body %>
+      <div class="input-box">
+        <h1 class="title"><%= @topic.title %></h1>
       </div>
 
-      <div>
+      <p>
         <strong>tags:</strong>
         <% if @topic.forum_tags.any? %>
           <% @topic.forum_tags.each do |tag| %>
-            <li>
-              <%= tag.name %>
-            </li>
+            <%= tag.name %>
           <% end %>
         <% else %>
-          <p> No tags</p>
-        <% end %>
+        <p> No tags</p>
+      <% end %>
+      </p>
+
+      <% if user_signed_in? && current_user.id == @topic.user_id %>
+        <%= link_to 'Edit', edit_topic_path(@topic), class: 'button' %>
+      <% end %>
+
+      <div class="character__description input-box">
+        <p class="input"><%= @topic.body %></p>
       </div>
 
-      <h2>Comments</h2>
+      <%= link_to 'Back', forum_path(@topic.forum), class: 'button' %>
+
       <% if user_signed_in? %>
-        <%= form_with(model: [@topic, @topic.topic_comments.build], local: true) do |form| %>
-          <div class="field">
-            <%= form.label :text, "Add comment" %><br>
-            <%= form.text_area :text %>
-          </div>
-          <div class="actions">
-            <%= form.submit "Send" %>
+        <%= form_with(model: [@topic, @topic.topic_comments.build], local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
+          <div style="display: flex">
+            <div class="input-box">
+              <%= form.label :text, "Add comment" %>
+              <%= form.text_area :text, class: "input", style: "width: 400px" %>
+            </div>
+            <div class="actions">
+              <%= form.submit "Send", class: 'button' %>
+            </div>
           </div>
         <% end %>
       <% end %>
+
+      <h2 class="title-small">Comments</h2>
       <% if @topic.topic_comments.any? %>
         <ul>
           <% @topic.topic_comments.each do |comment| %>
-            <li>
+            <li class="comment">
               <% if comment.user.present? %>
-                <strong><%= comment.user.email %>:</strong>
-              <% else %>
-                <strong>Deleted user:</strong>
+                <%= image_tag(comment.user.image, alt: comment.user.name) %>
+                <strong><%= comment.user.nickname %>:</strong>
               <% end %>
-              <%= comment.text %>
+              <div class="comment-text"><%= comment.text %></div>
+              <div class="comment-time">
+                <% if comment.created_at.present? %>
+                  <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+                <% else %>
+                  <em>Unknown time</em>
+                <% end %>
+              </div>
             </li>
           <% end %>
         </ul>
@@ -57,8 +71,8 @@
         <p>No comments.</p>
       <% end %>
 
-      <%= link_to 'Edit', edit_topic_path(@topic) %> |
-      <%= link_to 'Back', forum_path(@topic.forum) %>
+
+
     </div>
   </div>
 </div>
