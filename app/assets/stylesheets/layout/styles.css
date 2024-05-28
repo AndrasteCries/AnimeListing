@@ -1589,3 +1589,54 @@ body::after {
     height: 120px;
     align-items: start;
 }
+
+/*---------------------------------------------------------------------------------------*/
+.block-forum{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 50px;
+    border-bottom: 3px solid var(--blue);
+}
+
+.block-forum .title{
+    color: white;
+}
+
+.block-forum__items{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.item-block-forum{
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #7082b4;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.item-block-forum__num{
+    font-weight: 500;
+    font-size: 24px;
+}
+.item-block-forum__title{
+    font-size: 32px;
+    font-weight: 500;
+}
+.item-block-forum__comments{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.item-block-forum__body{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

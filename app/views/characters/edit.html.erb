@@ -44,6 +44,9 @@
       <div class="button-center">
         <%= link_to 'Back', characters_path(@character), class: "button" %>
       </div>
+      <div class="button-center" style="color: red">
+        <%= button_to "Delete character", character_path(@character), method: :delete, data: { confirm: "Are you sure?" }, class: "button" %>
+      </div>
     </div>
   </div>
 </div>

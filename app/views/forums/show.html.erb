@@ -2,24 +2,21 @@
   <div class="anime__container">
     <div class="anime__body">
       <% if user_signed_in? %>
-        <%= link_to 'Start topic', new_topic_path %>
+        <%= link_to 'Start topic', new_topic_path, class: 'button' %>
       <% end %>
       <% if @topics.any? %>
-        <table>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Body</th>
-            <th>Comments</th>
-          </tr>
-        </table>
-        <% @topics.each do |topic| %>
-          <tr>
-            <td><%= topic.id %></td>
-            <td><%= link_to topic.title, topic %></td>
-            <td><%= topic.title %></td>
-            <td><%= topic.body %></td>
-          </tr>
+        <% @topics.each_with_index do |topic, i| %>
+          <%= link_to topic_path(topic), class: "block-forum__item item-block-forum" do %>
+            <div class="item-block-forum__num"><%= i + 1 %></div>
+            <div class="item-block-forum__body">
+              <div class="item-block-forum__title"><%= topic.title %></div>
+              <div class="item-block-forum__text"><%= topic.body %></div>
+              <div class="item-block-forum__comments">
+                <p>Comments:</p>
+                <span><%= topic.topic_comments.count %></span>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       <% else %>
         <h1>No topics yet</h1>

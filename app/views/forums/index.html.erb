@@ -1,14 +1,34 @@
-<div class="anime">
+<div class="forum anime">
   <div class="anime__container">
     <div class="anime__body">
-      <% if @forums.any? %>
-        <% @forums.each do |forum| %>
-          <%= link_to forum.title, forum %>
-        <% end %>
-      <% else %>
-        <h1>No forums yet</h1>
-      <% end %>
+      <% @forums.each do |forum| %>
+        <div class="forum__block block-forum">
+          <% if @forums.any? %>
 
+            <div class="title"><%= link_to forum.title, forum %></div>
+
+            <div class="block-forum__items">
+              <% forum.topics.each_with_index do |topic, i| %>
+                <%= link_to topic_path(topic), class: "block-forum__item item-block-forum" do %>
+                  <div class="item-block-forum__num"><%= i + 1 %></div>
+                  <div class="item-block-forum__body">
+                    <div class="item-block-forum__title"><%= topic.title %></div>
+                    <div class="item-block-forum__text"><%= topic.body %></div>
+                    <div class="item-block-forum__comments">
+                      <p>Comments:</p>
+                      <span><%= topic.topic_comments.count %></span>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+
+
+          <% else %>
+            <h1>No forums yet</h1>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
