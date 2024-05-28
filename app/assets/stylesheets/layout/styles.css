@@ -607,6 +607,9 @@ textarea {
 
 .item-anime__image img {
     aspect-ratio: 250/350;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .item-anime__rating {
@@ -631,6 +634,9 @@ textarea {
 
 .item-anime__body {
     padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .item-anime__name {
@@ -1537,4 +1543,49 @@ body::after {
     -ms-flex-direction: column;
     flex-direction: column;
     gap: 1.25rem;
+}
+
+.character-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    gap: 20px;
+}
+
+.character {
+
+}
+
+.character__content{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.character__block{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.character__image{
+    max-width: 300px;
+    max-height: 400px;
+    width: 100%;
+    height: 100%;
+
+}
+
+.character__image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.character__description{
+    max-width: none !important;
+}
+
+.character__description .input{
+    height: 120px;
+    align-items: start;
 }

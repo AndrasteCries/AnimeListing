@@ -1,7 +1,9 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <%= form_with(model: @character) do |form| %>
+      <h1 class="title-small">Edit character</h1>
+      <%= form_with(model: @character, local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
+
         <div class="input-box">
           <%= form.label :name %>
           <%= form.text_field :name, class: "input" %>
@@ -23,23 +25,25 @@
         </div>
 
         <div class="input-box">
-          <%= form.label :image %>
-          <%= form.file_field :image, class: "input" %>
-        </div>
-
-        <div class="input-box">
           <%= form.label :anime_ids, "Select Animes" %>
           <%= form.select :anime_ids, options_for_select(Anime.all.map { |anime| [anime.name, anime.id] },
                                                          @character.anime_ids), {},
-                                                                { multiple: true, data: { scroll: "130", class_modif: "form" } } %>
+                          { multiple: true, data: { scroll: "130", class_modif: "form" } } %>
         </div>
+
+        <label class="input-box input-box--file ">
+          <%= form.label :image %>
+          <%= form.file_field :image %>
+          <div class="button"> Upload image</div>
+        </label>
 
         <div class="actions">
-          <%= form.submit %>
+          <%= form.submit 'Update', class: "button" %>
         </div>
       <% end %>
-
-      <%= link_to 'Back', characters_path %>
+      <div class="button-center">
+        <%= link_to 'Back', characters_path(@character), class: "button" %>
+      </div>
     </div>
   </div>
 </div>

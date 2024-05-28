@@ -1,4 +1,6 @@
 class CharactersController < ApplicationController
+
+  before_action :authorize_user, only: [:edit, :new, :update, :destroy]
   def index
     @characters = Character.all
   end
@@ -51,6 +53,15 @@ class CharactersController < ApplicationController
   end
 
   private
+
+  def authorize_user
+    unless current_user.admin?
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: 'You are not authorized to perform this action.' and return }
+        format.json { render json: { error: 'Not Authorized' }, status: :forbidden and return }
+      end
+    end
+  end
 
   def character_params
     params.require(:character).permit(:name, :japanese, :full_name, :description, :image, anime_ids: [])

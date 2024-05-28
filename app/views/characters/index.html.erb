@@ -2,19 +2,33 @@
   <div class="anime__container">
     <div class="anime__body">
 
-      <h1>Characters</h1>
+      <h1 class="title">Characters</h1>
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <%= link_to 'New Character', new_character_path %>
+          <%= link_to 'New Character', new_character_path, class: 'button' %>
         <% end %>
       <% end %>
-      <ul>
+      <div class="character-list">
         <% @characters.each do |character| %>
-          <li>
-            <%= link_to character.name, character %>
-          </li>
+          <%= link_to character_path(character), class: "item-anime" do %>
+            <div class="item-anime__image">
+              <% if character.image.present? %>
+                <%= image_tag(character.image) %>
+              <% else %>
+                <%= image_tag("default_photo.jpg") %>
+              <% end %>
+              <!-- <img class="ibg" src="img/anime/01.jpg" alt="Image"> -->
+            </div>
+            <div class="item-anime__body">
+              <p class="item-anime__name"><%= character.name %></p>
+              <% if character.animes.any? %>
+                <p class="item-anime__name"><%= character.animes.first.name %></p>
+              <% end %>
+            </div>
+          <% end %>
+
         <% end %>
-      </ul>
+      </div>
     </div>
   </div>
 </div>
