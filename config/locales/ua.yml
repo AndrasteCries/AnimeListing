@@ -74,3 +74,58 @@ ua:
     no_forums: "Поки немає форумів"
   topics:
     no_topics: "Поки немає тем"
+    edit_topics: "Редагувати тему"
+    new_topic: "Нова тема"
+    forum: "Форум"
+    select_tags: "Вибрати теги"
+    create: "Створити"
+    back: "Назад"
+    add_comment: "Додати коментар"
+    send: "Надіслати"
+    comments: "Коментарі"
+    no_comments: "Немає коментарів"
+    no_tags: "Немає тегів"
+  edit_profile: "Редагувати профіль"
+  error: "помилка"
+  prohibited_saving: "заборонено зберігання цього користувача"
+  nickname: "Нікнейм"
+  birthday: "Дата народження"
+  sex: "Стать"
+  location: "Місцезнаходження"
+
+  profile:
+    profile: "Профіль"
+    edit: "Редагувати профіль"
+    name: "Ім'я"
+    nickname: "Прізвисько"
+    role: "Роль"
+    location: "Місцезнаходження"
+    last_activity: "Остання активність"
+    birthday: "День народження"
+    sex: "Стать"
+
+
+  about:
+    about: "Про себе"
+    grade: "Оцінити"
+    user_rates:
+      statuses:
+        watching: "Дивлюся"
+        completed: "Завершено"
+        on_hold: "Відкладено"
+        dropped: "Закинуто"
+        plan_to_watch: "Заплановано до перегляду"
+      no_grades: "Немає оцінок для %{status} зараз."
+    anime:
+      name: "Аніме"
+      rating: "Рейтинг"
+      episodes: "Епізоди"
+      score: "Оцінка"
+      status: "Статус"
+      anime: "Аніме"
+    actions:
+      action: "Дія"
+      delete: "Видалити"
+      confirm: "Ви впевнені?"
+      close: "Закрити"
+      add: "Додати"

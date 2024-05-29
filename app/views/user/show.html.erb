@@ -9,29 +9,29 @@
             </div>
             <% if user_signed_in? %>
               <% if current_user.id == @user.id %>
-                <%= link_to 'Edit profile', edit_user_profile_path(@user), class: "button" %>
+                <%= link_to t('profile.edit'), edit_user_profile_path(@user), class: "button" %>
               <% end %>
             <% end %>
           </div>
           <div class="anime__top-block">
             <div class="input-box">
-              <h1>Name</h1>
+              <h1><%= t('profile.name') %></h1>
               <p class="input"><%= @user.name %></p>
             </div>
             <div class="input-box">
-              <h1>Nickname</h1>
+              <h1><%= t('profile.nickname') %></h1>
               <p class="input"><%= @user.nickname %></p>
             </div>
             <div class="input-box">
-              <h1>Role</h1>
+              <h1><%= t('profile.role') %></h1>
               <p class="input"><%= @user.role %></p>
             </div>
             <div class="input-box">
-              <h1>Location</h1>
+              <h1><%= t('profile.location') %></h1>
               <p class="input"><%= @user.location %></p>
             </div>
             <div class="input-box">
-              <h1>Last activity</h1>
+              <h1><%= t('profile.last_activity') %></h1>
               <p class="input"><%= @user.last_sign_in_at %></p>
             </div>
           </div>
@@ -39,43 +39,42 @@
 
         <div class="anime__block">
           <div class="input-box">
-            <h1>Birthday</h1>
+            <h1><%= t('profile.birthday') %></h1>
             <p class="input"><%= @user.birthday %></p>
           </div>
           <div class="input-box">
-            <h1>Sex</h1>
+            <h1><%= t('profile.sex') %></h1>
             <p class="input"><%= @user.sex %></p>
           </div>
         </div>
         <div class="input-box" style="max-width: none; width: 100%">
-          <h1>About</h1>
+          <h1><%= t('profile.about') %></h1>
           <p class="input" style="max-width: none; width: 100%; height: 120px"><%= @user.about %></p>
         </div>
       </div>
       <div class="grade-button">
         <% if user_signed_in? %>
           <% if current_user.id == @user.id %>
-            <a href="#" data-popup="#popup-grade" class="grade button" style="margin: 0 auto">Grade</a>
+            <a href="#" data-popup="#popup-grade" class="grade button" style="margin: 0 auto"><%= t('profile.grade') %></a>
           <% end %>
         <% end %>
       </div>
     </div>
   </section>
-
   <section class="user-anime">
     <div class="user-anime__container">
       <div class="user-anime__body">
         <% UserRate.statuses.keys.each do |status| %>
-          <h1 class="title-small"><%= status %></h1>
+          <h1 class="title-small"><%= t("user_rates.statuses.#{status}") %></h1>
           <% if @user.user_rates.where(status: status).any? %>
             <div>
               <ul class="user-anime-list">
                 <div class="user-anime-list__block">
                   <div class="user-anime-list__name"><b>#</b></div>
-                  <div class="user-anime-list__name"><b>Anime</b></div>
-                  <div class="user-anime-list__rate"><b>Rating</b></div>
-                  <div class="user-anime-list__rate"><b>Episodes</b></div>
-                  <div class="user-anime-list__rate"><b>Action</b></div>
+                  <div class="user-anime-list__name"><b><%= t('anime.name') %></b></div>
+                  <div class="user-anime-list__rate"><b><%= t('anime.rating') %></b></div>
+                  <div class="user-anime-list__rate"><b><%= t('anime.episodes') %></b></div>
+                  <div class="user-anime-list__rate"><b><%= t('actions.action') %></b></div>
                 </div>
                 <% @user.user_rates.where(status: status).each_with_index do |user_rate, i| %>
                   <li class="user-anime-list__item">
@@ -84,8 +83,7 @@
                     <div class="user-anime-list__rate"><%= user_rate.score %></div>
                     <div class="user-anime-list__rate"><%= user_rate.episodes %></div>
                     <% if user_signed_in? && current_user.id == @user.id %>
-                      <div class="user-anime-list__rate">
-                        <%= button_to "Delete", user_rate_path(user_rate), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+                      <div class="user-anime-list__rate">                        <%= button_to t('actions.delete'), user_rate_path(user_rate), method: :delete, data: { confirm: t('actions.confirm') }, class: "btn btn-danger" %>
                       </div>
                     <% end %>
                   </li>
@@ -93,7 +91,7 @@
               </ul>
             </div>
           <% else %>
-            <p class="title-small">No grades for <%= status %> now.</p>
+            <p class="title-small"><%= t('user_rates.no_grades', status: t("user_rates.statuses.#{status}")) %></p>
           <% end %>
         <% end %>
       </div>
@@ -105,29 +103,29 @@
         <div class="popup__content">
           <div class="popup-grade__body">
             <div class="popup-grade__top">
-              <button data-close type="button" class="popup__close">Close</button>
+              <button data-close type="button" class="popup__close"><%= t('actions.close') %></button>
             </div>
             <div class="popup-grade__content">
               <%= form_with(model: UserRate.new, url: user_rates_path, method: "post", html: { class: "popup-grade__block" }) do |form| %>
                 <div class="input-box">
-                  <%= form.label :anime_id, "Anime" %>
+                  <%= form.label :anime_id, t('anime.anime') %>
                   <%= form.select :anime_id, options_for_select(@animes.map { |anime| [anime.name, anime.id] }), { include_blank: true }, { data: { scroll: "130", class_modif: "form" } } %>
                 </div>
                 <div class="input-box">
-                  <%= form.label :score, "Score" %>
+                  <%= form.label :score, t('anime.score') %>
                   <%= form.select :score, (1..10).map { |value| [value, value] }, { include_blank: true }, { data: { scroll: "130", class_modif: "form" } } %>
                 </div>
                 <div class="input-box">
-                  <%= form.label :episodes, "Episodes" %>
+                  <%= form.label :episodes, t('anime.episodes') %>
                   <%= form.number_field :episodes, class: "input" %>
                 </div>
                 <div class="input-box">
-                  <%= form.label :status, "Status" %>
-                  <%= form.select :status, UserRate.statuses.keys.map { |status| [status.capitalize, status] }, { include_blank: true } %>
+                  <%= form.label :status, t('anime.status') %>
+                  <%= form.select :status, UserRate.statuses.keys.map { |status| [t("user_rates.statuses.#{status}"), status] }, { include_blank: true } %>
                 </div>
                 <%= form.hidden_field :user_id, value: current_user.id %>
                 <div class="actions">
-                  <%= form.submit "Add", class: "button" %>
+                  <%= form.submit t('actions.add'), class: "button" %>
                 </div>
               <% end %>
             </div>
@@ -137,7 +135,6 @@
     </div>
   <% end %>
 </div>
-
 
 <% content_for :javascript do %>
   <%= javascript_include_tag 'multyselect' %>

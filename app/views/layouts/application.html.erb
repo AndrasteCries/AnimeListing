@@ -26,7 +26,7 @@
               <%= link_to t("forums.forums"), forums_path, class: "user__action user__action--registration" %>
             </li>
             <li class="menu__item">
-              <%= link_to t("anime"), animes_path, class: "user__action user__action--registration" %>
+              <%= link_to t("anime.anime"), animes_path, class: "user__action user__action--registration" %>
             </li>
             <li class="menu__item">
               <%= link_to t("characters"), characters_path, class: "user__action user__action--registration" %>
@@ -42,7 +42,7 @@
       </div>
       <div class="header__user user">
         <% if user_signed_in? %>
-          <%= link_to t("profile"), user_profile_path(current_user.id), class: "user__action user__action--registration" %>
+          <%= link_to t("profile.profile"), user_profile_path(current_user.id), class: "user__action user__action--registration" %>
           <%= button_to t("sign_out"), destroy_user_session_path, class: "user__action user__action--registration", method: :delete %>
         <% else %>
           <%= link_to t("log_in"), new_user_session_path, class: "user__action user__action--login" %>

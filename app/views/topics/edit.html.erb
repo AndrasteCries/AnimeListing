@@ -1,7 +1,7 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <h1 class="title-small">Edit topic</h1>
+      <h1 class="title-small"><%= t('topics.edit_topic') %></h1>
       <%= form_with(model: @topic, local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
         <div class="input-box">
           <%= form.label :title %>
@@ -20,18 +20,18 @@
         </label>
 
         <div class="input-box">
-          <%= form.label :forum_tag_id, "Select tags" %>
+          <%= form.label :forum_tag_id, t('select_tags') %>
           <%= form.select :forum_tag_id, options_for_select(ForumTag.all.map { |tag| [tag.name, tag.id] },
                                                             @topic.topic_tags), {},
                           { multiple: true, data: { scroll: "130", class_modif: "form" } } %>
         </div>
 
         <div class="actions">
-          <%= form.submit 'Update', class: "button" %>
+          <%= form.submit t('update'), class: "button" %>
         </div>
       <% end %>
       <div class="button-center">
-        <%= link_to 'Back', @topic.forum_id.present? ? forum_path(@topic.forum_id) : forums_path, class: "button" %>
+        <%= link_to t('back'), @topic.forum_id.present? ? forum_path(@topic.forum_id) : forums_path, class: "button" %>
       </div>
     </div>
   </div>

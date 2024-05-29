@@ -13,41 +13,41 @@
       </div>
 
       <p>
-        <strong>tags:</strong>
+        <strong><%= t('topics.tags') %>:</strong>
         <% if @topic.forum_tags.any? %>
           <% @topic.forum_tags.each do |tag| %>
             <%= tag.name %>
           <% end %>
         <% else %>
-        <p> No tags</p>
+        <p><%= t('topics.no_tags') %></p>
       <% end %>
       </p>
 
       <% if user_signed_in? && current_user.id == @topic.user_id %>
-        <%= link_to 'Edit', edit_topic_path(@topic), class: 'button' %>
+        <%= link_to t('edit'), edit_topic_path(@topic), class: 'button' %>
       <% end %>
 
       <div class="character__description input-box">
         <p class="input"><%= @topic.body %></p>
       </div>
 
-      <%= link_to 'Back', forum_path(@topic.forum), class: 'button' %>
+      <%= link_to t('back'), forum_path(@topic.forum), class: 'button' %>
 
       <% if user_signed_in? %>
         <%= form_with(model: [@topic, @topic.topic_comments.build], local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
           <div style="display: flex">
             <div class="input-box">
-              <%= form.label :text, "Add comment" %>
+              <%= form.label :text, t('topics.add_comment') %>
               <%= form.text_area :text, class: "input", style: "width: 400px" %>
             </div>
             <div class="actions">
-              <%= form.submit "Send", class: 'button' %>
+              <%= form.submit t('topics.send'), class: 'button' %>
             </div>
           </div>
         <% end %>
       <% end %>
 
-      <h2 class="title-small">Comments</h2>
+      <h2 class="title-small"><%= t('topics.comments') %></h2>
       <% if @topic.topic_comments.any? %>
         <ul>
           <% @topic.topic_comments.each do |comment| %>
@@ -60,19 +60,14 @@
               <div class="comment-time">
                 <% if comment.created_at.present? %>
                   <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
-                <% else %>
-                  <em>Unknown time</em>
                 <% end %>
               </div>
             </li>
           <% end %>
         </ul>
       <% else %>
-        <p>No comments.</p>
+        <p><%= t('topics.no_comments') %>.</p>
       <% end %>
-
-
-
     </div>
   </div>
 </div>
