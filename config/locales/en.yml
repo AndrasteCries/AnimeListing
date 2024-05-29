@@ -69,3 +69,9 @@ en:
         submit: "Log in"
         no_account: "Don't have an account?"
         register: "Register"
+  forums:
+    forums: "Forums"
+    no_forums: "No forums yet"
+
+  topics:
+    no_topics: "No topics yet"

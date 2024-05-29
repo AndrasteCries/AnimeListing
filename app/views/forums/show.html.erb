@@ -2,7 +2,7 @@
   <div class="anime__container">
     <div class="anime__body">
       <% if user_signed_in? %>
-        <%= link_to 'Start topic', new_topic_path, class: 'button' %>
+        <%= link_to t('forum.start_topic'), new_topic_path, class: 'button' %>
       <% end %>
       <% if @topics.any? %>
         <% @topics.each_with_index do |topic, i| %>
@@ -12,14 +12,14 @@
               <div class="item-block-forum__title"><%= topic.title %></div>
               <div class="item-block-forum__text"><%= topic.body %></div>
               <div class="item-block-forum__comments">
-                <p>Comments:</p>
+                <p><%= t('forum.comments') %>:</p>
                 <span><%= topic.topic_comments.count %></span>
               </div>
             </div>
           <% end %>
         <% end %>
       <% else %>
-        <h1>No topics yet</h1>
+        <h1><%= t('topics.no_topics') %></h1>
       <% end %>
     </div>
   </div>

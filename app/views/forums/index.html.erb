@@ -15,17 +15,15 @@
                     <div class="item-block-forum__title"><%= topic.title %></div>
                     <div class="item-block-forum__text"><%= topic.body %></div>
                     <div class="item-block-forum__comments">
-                      <p>Comments:</p>
+                      <p><%= t('forum.comments') %>:</p>
                       <span><%= topic.topic_comments.count %></span>
                     </div>
                   </div>
                 <% end %>
               <% end %>
             </div>
-
-
           <% else %>
-            <h1>No forums yet</h1>
+            <h1><%= t('forums.no_forums') %></h1>
           <% end %>
         </div>
       <% end %>

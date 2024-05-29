@@ -1,6 +1,7 @@
 ua:
   hello: "Привіт"
   anime_list: "Список Аніме"
+  anime: "Аніме"
   new_anime: "Нове Аніме"
   episodes: "Епізоди"
   duration: "Тривалість"
@@ -68,3 +69,8 @@ ua:
         submit: "Увійти"
         no_account: "Ще не маєте облікового запису?"
         register: "Зареєструватися"
+  forums:
+    forums: "Форуми"
+    no_forums: "Поки немає форумів"
+  topics:
+    no_topics: "Поки немає тем"
