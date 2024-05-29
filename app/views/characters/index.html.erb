@@ -1,11 +1,10 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-
-      <h1 class="title">Characters</h1>
+      <h1 class="title"><%= t("characters") %></h1>
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <%= link_to 'New Character', new_character_path, class: 'button' %>
+          <%= link_to t("new_character"), new_character_path, class: 'button' %>
         <% end %>
       <% end %>
       <div class="character-list">
@@ -17,16 +16,16 @@
               <% else %>
                 <%= image_tag("default_photo.jpg") %>
               <% end %>
-              <!-- <img class="ibg" src="img/anime/01.jpg" alt="Image"> -->
             </div>
             <div class="item-anime__body">
               <p class="item-anime__name"><%= character.name %></p>
               <% if character.animes.any? %>
                 <p class="item-anime__name"><%= character.animes.first.name %></p>
+              <% else %>
+                <p class="item-anime__name"><%= t("default_anime_name") %></p>
               <% end %>
             </div>
           <% end %>
-
         <% end %>
       </div>
     </div>

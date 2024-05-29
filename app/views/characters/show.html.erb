@@ -6,36 +6,33 @@
           <%= image_tag(@character.image) if @character.image.present? %>
         </div>
         <div class="character__block">
-        <h1 class="title"><%= @character.name %></h1>
-        <div class="input-box">
-          <p>Japanese:</p>
-          <p class="input"><%= @character.japanese %></p>
-        </div>
-        <div class="input-box">
-          <p>Full Name</p>
-          <p class="input"><%= @character.full_name %></p>
-        </div>
-        <p>
-          <strong>From:</strong>
-          <% @character.animes.each do |anime| %>
-            <%= link_to anime.name, anime_path(anime) %>
+          <h1 class="title"><%= @character.name %></h1>
+          <div class="input-box">
+            <p><%= t("character.japanese") %>:</p>
+            <p class="input"><%= @character.japanese %></p>
+          </div>
+          <div class="input-box">
+            <p><%= t("character.full_name") %></p>
+            <p class="input"><%= @character.full_name %></p>
+          </div>
+          <p>
+            <strong><%= t("character.from") %>:</strong>
+            <% @character.animes.each do |anime| %>
+              <%= link_to anime.name, anime_path(anime) %>
+            <% end %>
+          </p>
+          <% if user_signed_in? && current_user.admin? %>
+            <%= link_to t("character.edit"), edit_character_path(@character), class: 'button' %>
           <% end %>
-        </p>
-        <% if user_signed_in? && current_user.admin? %>
-          <%= link_to 'Edit', edit_character_path(@character), class: 'button' %>
-        <% end %>
+        </div>
       </div>
+
+      <div class="character__description input-box">
+        <p><%= t("character.description") %>:</p>
+        <p class="input"><%= @character.description %></p>
+      </div>
+
+      <%= link_to t("character.back"), characters_path, class: 'button' %>
     </div>
-
-
-    <div class="character__description input-box">
-      <p>Description:</p>
-      <p class="input"><%= @character.description %></p>
-    </div>
-
-    <%= link_to 'Back', characters_path, class: 'button' %>
-
-
   </div>
-</div>
 </div>
