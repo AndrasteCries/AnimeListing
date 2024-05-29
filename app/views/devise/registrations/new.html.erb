@@ -1,44 +1,43 @@
 <div class="login">
   <div class="login__container">
     <div class="login__body">
-      <h2 class="login__title title">Registration</h2>
-      <%= form_for( resource, as: resource_name, url: registration_path(resource_name), html: { class: "login__form" }) do |f|  %>
+      <h2 class="login__title title"><%= t("devise.registrations.new.registration") %></h2>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "login__form" }) do |f|  %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="input-box">
-          <%= f.label :name %>
-          <%= f.text_field :name, placeholder: 'Name', class: "login__input input" %>
+          <%= f.label :name, t("devise.registrations.new.name") %>
+          <%= f.text_field :name, placeholder: t("devise.registrations.new.name"), class: "login__input input" %>
         </div>
 
         <div class="input-box">
-          <%= f.label :nickname %>
-          <%= f.text_field :nickname, placeholder: 'Username', class: "login__input input" %>
+          <%= f.label :nickname, t("devise.registrations.new.nickname") %>
+          <%= f.text_field :nickname, placeholder: t("devise.registrations.new.nickname"), class: "login__input input" %>
         </div>
 
         <div class="input-box">
-          <%= f.label :email %>
-          <%= f.email_field :email, placeholder: 'Email', class: "login__input input", autocomplete: "email" %>
+          <%= f.label :email, t("devise.registrations.new.email") %>
+          <%= f.email_field :email, placeholder: t("devise.registrations.new.email"), class: "login__input input", autocomplete: "email" %>
         </div>
 
         <div class="input-box">
-          <%= f.label :password %>
-          <%= f.password_field :password, placeholder: 'Password', class: "login__input input", autocomplete: "new.html.erb-password" %>
+          <%= f.label :password, t("devise.registrations.new.password") %>
+          <%= f.password_field :password, placeholder: t("devise.registrations.new.password"), class: "login__input input", autocomplete: "new-password" %>
         </div>
 
         <div class="input-box">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, placeholder: 'Repeat the password', class: "login__input input", autocomplete: "new.html.erb-password" %>
+          <%= f.label :password_confirmation, t("devise.registrations.new.password_confirmation") %>
+          <%= f.password_field :password_confirmation, placeholder: t("devise.registrations.new.password_confirmation"), class: "login__input input", autocomplete: "new-password" %>
         </div>
-
 
         <div class="actions">
-          <%= f.submit "Register", class: "login__button button" %>
+          <%= f.submit t("devise.registrations.new.register"), class: "login__button button" %>
         </div>
       <% end %>
 
       <div class="login__block">
-        <p>Already have an account?</p>
-        <a href="<%= new_session_path(resource_name) %>">Log in</a>
+        <p><%= t("devise.registrations.new.have_account") %></p>
+        <a href="<%= new_session_path(resource_name) %>"><%= t("devise.registrations.new.login") %></a>
       </div>
     </div>
   </div>

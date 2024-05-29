@@ -48,3 +48,23 @@ ua:
     description: "Опис"
     edit: "Редагувати"
     back: "Назад"
+  devise:
+    registrations:
+      new:
+        registration: "Реєстрація"
+        name: "Ім'я"
+        nickname: "Логін"
+        email: "Електронна пошта"
+        password: "Пароль"
+        password_confirmation: "Повторіть пароль"
+        register: "Зареєструватися"
+        have_account: "Вже є аккаунт?"
+        login: "Увійти"
+    sessions:
+      new:
+        login: "Увійти"
+        email: "Електронна пошта"
+        password: "Пароль"
+        submit: "Увійти"
+        no_account: "Ще не маєте облікового запису?"
+        register: "Зареєструватися"

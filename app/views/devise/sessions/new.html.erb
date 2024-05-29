@@ -2,23 +2,23 @@
   <div class="login">
     <div class="login__container">
       <div class="login__body">
-        <h2 class="login__title title">Log in</h2>
+        <h2 class="login__title title"><%= t("devise.sessions.new.login") %></h2>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "login__form" }) do |f| %>
           <div class="input-box">
-            <p>Email</p>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Email', class: "login__input input" %>
+            <p><%= t("devise.sessions.new.email") %></p>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: t("devise.sessions.new.email"), class: "login__input input" %>
           </div>
           <div class="input-box">
-            <p>Password</p>
-            <%= f.password_field :password, autocomplete: "current-password", placeholder: 'Password', class: "login__input input" %>
+            <p><%= t("devise.sessions.new.password") %></p>
+            <%= f.password_field :password, autocomplete: "current-password", placeholder: t("devise.sessions.new.password"), class: "login__input input" %>
           </div>
           <div class="actions">
-            <%= f.submit "Log in", class: "login__button button" %>
+            <%= f.submit t("devise.sessions.new.submit"), class: "login__button button" %>
           </div>
         <% end %>
         <div class="login__block">
-          <p>Don't have an account?</p>
-          <%= link_to "Register", new_registration_path(resource_name) %>
+          <p><%= t("devise.sessions.new.no_account") %></p>
+          <%= link_to t("devise.sessions.new.register"), new_registration_path(resource_name) %>
         </div>
       </div>
     </div>

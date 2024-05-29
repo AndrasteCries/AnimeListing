@@ -49,3 +49,23 @@ en:
     description: "Description"
     edit: "Edit"
     back: "Back"
+  devise:
+    registrations:
+      new:
+        registration: "Registration"
+        name: "Name"
+        nickname: "Username"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Repeat the password"
+        register: "Register"
+        have_account: "Already have an account?"
+        login: "Log in"
+    sessions:
+      new:
+        login: "Log in"
+        email: "Email"
+        password: "Password"
+        submit: "Log in"
+        no_account: "Don't have an account?"
+        register: "Register"
