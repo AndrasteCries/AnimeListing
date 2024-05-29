@@ -1,135 +1,140 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
+      <div class="character__content">
+        <% if @anime.title_image.attached? %>
+          <div class="input-box character__image">
+            <%= image_tag @anime.title_image %>
+          </div>
+        <% end %>
+        <div class="character__block">
+          <h1 class="title"><%= @anime.name %></h1>
 
-      <% if @anime.title_image.attached? %>
-        <div>
-          <%= image_tag @anime.title_image %>
+          <div class="input-box">
+            <p>Description:</p>
+            <p class="input"><%= @anime.description %></p>
+          </div>
+
+          <div class="input-box">
+            <p>Episodes:</p>
+            <p class="input"><%= @anime.episodes %></p>
+          </div>
+
+          <div class="input-box">
+            <p>Duration:</p>
+            <p class="input"><%= @anime.duration %></p>
+          </div>
+
+          <div class="input-box">
+            <p>Score:</p>
+            <p class="input"><%= @anime.score %></p>
+          </div>
+
+          <div class="input-box">
+            <p>Popularity:</p>
+            <p class="input"><%= @anime.popularity %></p>
+          </div>
         </div>
-      <% end %>
-
-      <h1><%= @anime.name %></h1>
-
-      <div>
-        <strong>Description:</strong>
-        <%= @anime.description %>
       </div>
+      <div class="anime__block">
+        <div class="input-box">
+          <p>Rating:</p>
+          <p class="input"><%= @anime.rating %></p>
+        </div>
 
-      <div>
-        <strong>Episodes:</strong>
-        <%= @anime.episodes %>
+        <div class="input-box">
+          <p>Y-Rating:</p>
+          <p class="input"><%= @anime.yrating %></p>
+        </div>
+
+        <div class="input-box">
+          <p>Status:</p>
+          <p class="input"><%= @anime.status.present? ? @anime.status.capitalize : 'Unknown' %></p>
+        </div>
+
+        <div class="input-box">
+          <p>Tags:</p>
+          <ul class="input">
+            <% @anime.tags.each do |tag| %>
+              <li><%= tag.name %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="input-box">
+          <p>Genres:</p>
+          <ul class="input">
+            <% @anime.genres.each do |genre| %>
+              <li><%= genre.name %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div class="input-box">
+          <p>Types:</p>
+          <ul class="input">
+            <% @anime.types.each do |type| %>
+              <li><%= type.name %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-
-      <div>
-        <strong>Duration:</strong>
-        <%= @anime.duration %>
-      </div>
-
-      <div>
-        <strong>Score:</strong>
-        <%= @anime.score %>
-      </div>
-
-      <div>
-        <strong>Popularity:</strong>
-        <%= @anime.popularity %>
-      </div>
-
-      <div>
-        <strong>Rating:</strong>
-        <%= @anime.rating %>
-      </div>
-
-      <div>
-        <strong>Y-Rating:</strong>
-        <%= @anime.yrating %>
-      </div>
-
-      <div>
-        <strong>Studio:</strong>
-        <%= @anime.studio_id %>
-      </div>
-
-      <div>
-        <strong>Status:</strong>
-        <%= @anime.status.capitalize %>
-      </div>
-
-      <div>
-        <strong>Tags:</strong>
-        <ul>
-          <% @anime.tags.each do |tag| %>
-            <li><%= tag.name %></li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div>
-        <strong>Genres:</strong>
-        <ul>
-          <% @anime.genres.each do |genre| %>
-            <li><%= genre.name %></li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div>
-        <strong>Types:</strong>
-        <ul>
-          <% @anime.types.each do |type| %>
-            <li><%= type.name %></li>
-          <% end %>
-        </ul>
-      </div>
-
-      <div>
-        <strong>Characters:</strong>
-        <% Rails.logger.debug "Anime characters: #{@anime.characters.inspect}" %>
+      <div class="input-box">
+        <p>Characters:</p>
         <% if @anime.characters.any? %>
-          <p>Number of characters: <%= @anime.characters.count %></p>
-          <ul>
+          <ul class="input">
             <% @anime.characters.each do |character| %>
-              <li>
-                <%= character.name %>
-              </li>
+              <li class="input"><%= link_to character.name, character %></li>
             <% end %>
           </ul>
         <% else %>
-          <p>No characters.</p>
+          <p class="input">No characters.</p>
         <% end %>
       </div>
 
-      <h2>Comments</h2>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to 'Edit', edit_anime_path(@anime), class: 'button' %>
+      <% end %>
+      <%= link_to 'Back', animes_path, class: 'button' %>
       <% if user_signed_in? %>
-        <%= form_with(model: [@anime, @anime.comments.build], local: true) do |form| %>
-          <div class="field">
-            <%= form.label :text, "Add comment" %><br>
-            <%= form.text_area :text %>
-          </div>
-          <div class="actions">
-            <%= form.submit "Send" %>
+        <%= form_with(model: [@anime, @anime.comments.build], local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
+          <div style="display: flex">
+            <div class="input-box">
+              <%= form.label :text, "Add comment" %>
+              <%= form.text_area :text, class: "input", style: "width: 400px" %>
+            </div>
+            <div class="actions">
+              <%= form.submit "Send", class: 'button' %>
+            </div>
           </div>
         <% end %>
       <% end %>
+
+      <h2 class="title-small">Comments</h2>
       <% if @anime.comments.any? %>
         <ul>
           <% @anime.comments.each do |comment| %>
-            <li>
+            <li class="comment">
               <% if comment.user.present? %>
-                <strong><%= comment.user.email %>:</strong>
-              <% else %>
-                <strong>Deleted user:</strong>
+                <%= image_tag(comment.user.image, alt: comment.user.name) %>
+                <strong><%= comment.user.nickname %>:</strong>
               <% end %>
-              <%= comment.text %>
+              <div class="comment-text"><%= comment.text %></div>
+              <div class="comment-time">
+                <% if comment.created_at.present? %>
+                  <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
+                <% else %>
+                  <em>Unknown time</em>
+                <% end %>
+              </div>
             </li>
           <% end %>
         </ul>
       <% else %>
         <p>No comments.</p>
       <% end %>
-
-      <%= link_to 'Edit', edit_anime_path(@anime) %> |
-      <%= link_to 'Back', animes_path %>
     </div>
   </div>
+
+
 </div>

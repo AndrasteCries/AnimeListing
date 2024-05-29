@@ -3,7 +3,7 @@
     <div class="anime__body">
       <h1>Edit Anime</h1>
 
-      <%= form_with(model: @anime, local: true) do |form| %>
+      <%= form_with(model: @anime, html: { class: "login__form", style: "display: flex; align-items: center" }, local: true) do |form| %>
         <% if @anime.errors.any? %>
           <div id="error_explanation">
             <h2><%= pluralize(@anime.errors.count, "error") %> prohibited this anime from being saved:</h2>
@@ -66,42 +66,53 @@
           <%= form.select :status, Anime.statuses.keys.map { |status| [status.capitalize, status] }, {}, class: "input" %>
         </div>
 
-        <div class="input-box">
+        <label class="input-box input-box--file ">
           <%= form.label :title_image %>
-          <%= form.file_field :title_image, class: "input" %>
-        </div>
+          <%= form.file_field :title_image %>
+          <div class="button"> Upload image</div>
+        </label>
 
         <div class="input-box">
           <%= form.label :tags, "Select Tags" %><br>
           <% @tags.each do |tag| %>
-            <%= check_box_tag "anime[tag_ids][]", tag.id, @anime.tags.include?(tag), id: "tag_#{tag.id}" %>
-            <%= label_tag "tag_#{tag.id}", tag.name %><br>
+            <label class="">
+              <p><%= tag.name %></p>
+              <%= check_box_tag "anime[tag_ids][]", tag.id, @anime.tags.include?(tag), id: "tag_#{tag.id}", class: "real-checkbox" %>
+              <span class="custom-checkbox"></span>
+            </label>
           <% end %>
         </div>
 
         <div class="input-box">
           <%= form.label :types, "Select Types" %><br>
           <% @types.each do |type| %>
-            <%= check_box_tag "anime[type_ids][]", type.id, @anime.types.include?(type), id: "type_#{type.id}" %>
-            <%= label_tag "type_#{type.id}", type.name %><br>
+            <label class="">
+              <p><%= type.name %></p>
+              <%= check_box_tag "anime[type_ids][]", type.id, @anime.types.include?(type), id: "type_#{type.id}", class: "real-checkbox" %>
+              <span class="custom-checkbox"></span>
+            </label>
           <% end %>
         </div>
 
         <div class="input-box">
           <%= form.label :genres, "Select Genres" %><br>
           <% @genres.each do |genre| %>
-            <%= check_box_tag "anime[genre_ids][]", genre.id, @anime.genres.include?(genre), id: "genre_#{genre.id}" %>
-            <%= label_tag "genre_#{genre.id}", genre.name %><br>
+            <label class="">
+              <p><%= genre.name %></p>
+              <%= check_box_tag "anime[genre_ids][]", genre.id, @anime.genres.include?(genre), id: "genre_#{genre.id}", class: "real-checkbox" %>
+              <span class="custom-checkbox"></span>
+            </label>
           <% end %>
         </div>
 
+
         <div class="actions">
-          <%= form.submit %>
+          <%= form.submit 'Update', class: "button" %>
         </div>
       <% end %>
-
-      <%= link_to 'Show', @anime %> |
-      <%= link_to 'Back', animes_path %>
+      <div class="button-center">
+        <%= link_to 'Back', characters_path(@character), class: "button" %>
+      </div>
     </div>
   </div>
 </div>

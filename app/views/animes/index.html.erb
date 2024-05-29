@@ -1,44 +1,36 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <h1>Anime List</h1>
+      <h1 class="title">Anime List</h1>
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <%= link_to 'New anime', new_anime_path %>
+          <%= link_to 'New Anime', new_anime_path, class: 'button' %>
         <% end %>
       <% end %>
-      <table>
-        <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Episodes</th>
-          <th>Duration</th>
-          <th>Score</th>
-          <th>Popularity</th>
-          <th>Rating</th>
-          <th>Y-Rating</th>
-          <th>Studio</th>
-          <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
+      <div class="anime-list">
         <% @animes.each do |anime| %>
-          <tr>
-            <td><%= link_to anime.name, anime %></td>
-            <td><%= anime.description %></td>
-            <td><%= anime.episodes %></td>
-            <td><%= anime.duration %></td>
-            <td><%= anime.score %></td>
-            <td><%= anime.popularity %></td>
-            <td><%= anime.rating %></td>
-            <td><%= anime.yrating %></td>
-            <td><%= anime.studio_id %></td>
-            <td><%= anime.status.present? ? anime.status.capitalize : 'Unknown' %></td>
-          </tr>
+          <%= link_to anime_path(anime), class: "item-anime" do %>
+            <div class="item-anime__image">
+              <% if anime.title_image.present? %>
+                <%= image_tag(anime.title_image) %>
+              <% else %>
+                <%= image_tag("default_photo.jpg") %>
+              <% end %>
+            </div>
+            <div class="item-anime__body">
+              <p class="item-anime__name"><%= anime.name %></p>
+              <p class="item-anime__description"><%= anime.description.truncate(100) %></p>
+              <p class="item-anime__episodes">Episodes: <%= anime.episodes %></p>
+              <p class="item-anime__duration">Duration: <%= anime.duration %></p>
+              <p class="item-anime__score">Score: <%= anime.score %></p>
+              <p class="item-anime__popularity">Popularity: <%= anime.popularity %></p>
+              <p class="item-anime__yrating">Y-Rating: <%= anime.yrating %></p>
+              <p class="item-anime__studio">Studio: <%= anime.studio_id %></p>
+              <p class="item-anime__status">Status: <%= anime.status.present? ? anime.status.capitalize : 'Unknown' %></p>
+            </div>
+          <% end %>
         <% end %>
-        </tbody>
-      </table>
+      </div>
     </div>
   </div>
 </div>
