@@ -1,12 +1,12 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <h1>New Anime</h1>
+      <h1><%= t("new_anime") %></h1>
 
       <%= form_with(model: @anime, html: { class: "login__form", style: "display: flex; align-items: center" }, local: true) do |form| %>
         <% if @anime.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@anime.errors.count, "error") %> prohibited this anime from being saved:</h2>
+            <h2><%= t("prohibited_anime_save", count: @anime.errors.count) %></h2>
 
             <ul>
               <% @anime.errors.full_messages.each do |message| %>
@@ -17,63 +17,63 @@
         <% end %>
 
         <div class="input-box">
-          <%= form.label :name %>
+          <%= form.label :name, t("name") %>
           <%= form.text_field :name, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :description %>
+          <%= form.label :description, t("description") %>
           <%= form.text_area :description, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :episodes %>
+          <%= form.label :episodes, t("episodes") %>
           <%= form.number_field :episodes, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :duration %>
+          <%= form.label :duration, t("duration") %>
           <%= form.number_field :duration, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :score %>
+          <%= form.label :score, t("score") %>
           <%= form.number_field :score, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :popularity %>
+          <%= form.label :popularity, t("popularity") %>
           <%= form.number_field :popularity, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :rating %>
+          <%= form.label :rating, t("rating") %>
           <%= form.number_field :rating, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :yrating %>
+          <%= form.label :yrating, t("y_rating") %>
           <%= form.number_field :yrating, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :studio_id %>
+          <%= form.label :studio_id, t("studio") %>
           <%= form.number_field :studio_id, class: "input" %>
         </div>
 
         <div class="input-box">
-          <%= form.label :status %>
-          <%= form.select :status, Anime.statuses.keys.map { |status| [status.capitalize, status] }, {}, class: "input" %>
+          <%= form.label :status, t("status") %>
+          <%= form.select :status, Anime.statuses.keys.map { |status| [t(status.capitalize), status] }, {}, class: "input" %>
         </div>
 
-        <label class="input-box input-box--file ">
+        <label class="input-box input-box--file">
           <%= form.label :title_image %>
           <%= form.file_field :title_image %>
-          <div class="button"> Upload image</div>
+          <div class="button"><%= t("upload_image") %></div>
         </label>
 
         <div class="input-box">
-          <%= form.label :tags, "Select Tags" %><br>
+          <%= form.label :tags, t("select_tags") %><br>
           <% @tags.each do |tag| %>
             <label class="">
               <p><%= tag.name %></p>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="input-box">
-          <%= form.label :types, "Select Types" %><br>
+          <%= form.label :types, t("select_types") %><br>
           <% @types.each do |type| %>
             <label class="">
               <p><%= type.name %></p>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="input-box">
-          <%= form.label :genres, "Select Genres" %><br>
+          <%= form.label :genres, t("select_genres") %><br>
           <% @genres.each do |genre| %>
             <label class="">
               <p><%= genre.name %></p>
@@ -105,13 +105,12 @@
           <% end %>
         </div>
 
-
         <div class="actions">
-          <%= form.submit 'Create', class: "button" %>
+          <%= form.submit t("create"), class: "button" %>
         </div>
       <% end %>
       <div class="button-center">
-        <%= link_to 'Back', characters_path(@character), class: "button" %>
+        <%= link_to t("back"), characters_path(@character), class: "button" %>
       </div>
     </div>
   </div>

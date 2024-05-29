@@ -11,49 +11,49 @@
           <h1 class="title"><%= @anime.name %></h1>
 
           <div class="input-box">
-            <p>Description:</p>
+            <p><%= t("description") %>:</p>
             <p class="input"><%= @anime.description %></p>
           </div>
 
           <div class="input-box">
-            <p>Episodes:</p>
+            <p><%= t("episodes") %>:</p>
             <p class="input"><%= @anime.episodes %></p>
           </div>
 
           <div class="input-box">
-            <p>Duration:</p>
+            <p><%= t("duration") %>:</p>
             <p class="input"><%= @anime.duration %></p>
           </div>
 
           <div class="input-box">
-            <p>Score:</p>
+            <p><%= t("score") %>:</p>
             <p class="input"><%= @anime.score %></p>
           </div>
 
           <div class="input-box">
-            <p>Popularity:</p>
+            <p><%= t("popularity") %>:</p>
             <p class="input"><%= @anime.popularity %></p>
           </div>
         </div>
       </div>
       <div class="anime__block">
         <div class="input-box">
-          <p>Rating:</p>
+          <p><%= t("rating") %>:</p>
           <p class="input"><%= @anime.rating %></p>
         </div>
 
         <div class="input-box">
-          <p>Y-Rating:</p>
+          <p><%= t("y_rating") %>:</p>
           <p class="input"><%= @anime.yrating %></p>
         </div>
 
         <div class="input-box">
-          <p>Status:</p>
-          <p class="input"><%= @anime.status.present? ? @anime.status.capitalize : 'Unknown' %></p>
+          <p><%= t("status") %>:</p>
+          <p class="input"><%= @anime.status.present? ? @anime.status.capitalize : t("unknown") %></p>
         </div>
 
         <div class="input-box">
-          <p>Tags:</p>
+          <p><%= t("tags") %>:</p>
           <ul class="input">
             <% @anime.tags.each do |tag| %>
               <li><%= tag.name %></li>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="input-box">
-          <p>Genres:</p>
+          <p><%= t("genres") %>:</p>
           <ul class="input">
             <% @anime.genres.each do |genre| %>
               <li><%= genre.name %></li>
@@ -71,7 +71,7 @@
         </div>
 
         <div class="input-box">
-          <p>Types:</p>
+          <p><%= t("types") %>:</p>
           <ul class="input">
             <% @anime.types.each do |type| %>
               <li><%= type.name %></li>
@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="input-box">
-        <p>Characters:</p>
+        <p><%= t("characters") %>:</p>
         <% if @anime.characters.any? %>
           <ul class="input">
             <% @anime.characters.each do |character| %>
@@ -88,29 +88,29 @@
             <% end %>
           </ul>
         <% else %>
-          <p class="input">No characters.</p>
+          <p class="input"><%= t("no_characters") %></p>
         <% end %>
       </div>
 
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Edit', edit_anime_path(@anime), class: 'button' %>
+        <%= link_to t("edit"), edit_anime_path(@anime), class: 'button' %>
       <% end %>
-      <%= link_to 'Back', animes_path, class: 'button' %>
+      <%= link_to t("back"), animes_path, class: 'button' %>
       <% if user_signed_in? %>
         <%= form_with(model: [@anime, @anime.comments.build], local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
           <div style="display: flex">
             <div class="input-box">
-              <%= form.label :text, "Add comment" %>
+              <%= form.label :text, t("add_comment") %>
               <%= form.text_area :text, class: "input", style: "width: 400px" %>
             </div>
             <div class="actions">
-              <%= form.submit "Send", class: 'button' %>
+              <%= form.submit t("send"), class: 'button' %>
             </div>
           </div>
         <% end %>
       <% end %>
 
-      <h2 class="title-small">Comments</h2>
+      <h2 class="title-small"><%= t("comments") %></h2>
       <% if @anime.comments.any? %>
         <ul>
           <% @anime.comments.each do |comment| %>
@@ -124,17 +124,15 @@
                 <% if comment.created_at.present? %>
                   <%= comment.created_at.strftime("%Y-%m-%d %H:%M") %>
                 <% else %>
-                  <em>Unknown time</em>
+                  <em><%= t("unknown_time") %></em>
                 <% end %>
               </div>
             </li>
           <% end %>
         </ul>
       <% else %>
-        <p>No comments.</p>
+        <p><%= t("no_comments") %></p>
       <% end %>
     </div>
   </div>
-
-
 </div>

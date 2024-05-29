@@ -1,8 +1,13 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
+      <h1>
+        <%= t("hello") %> </h1>
+      <h1>
+        <%= t("hello") %></h1>
       <% if user_signed_in? and current_user.admin? %>
-        <h1> Hello admin</h1>
+        <h1>
+          <% t("hello") %> admin</h1>
       <% elsif user_signed_in? %>
         <h1> Hello user</h1>
       <% end %>

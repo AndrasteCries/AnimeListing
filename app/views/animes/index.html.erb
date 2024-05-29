@@ -1,10 +1,11 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <h1 class="title">Anime List</h1>
+      <h1 class="title"><%= t("anime_list") %></h1>
+      <h1><%= t("hello") %></h1>
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <%= link_to 'New Anime', new_anime_path, class: 'button' %>
+          <%= link_to t("new_anime"), new_anime_path, class: 'button' %>
         <% end %>
       <% end %>
       <div class="anime-list">
@@ -20,13 +21,13 @@
             <div class="item-anime__body">
               <p class="item-anime__name"><%= anime.name %></p>
               <p class="item-anime__description"><%= anime.description.truncate(100) %></p>
-              <p class="item-anime__episodes">Episodes: <%= anime.episodes %></p>
-              <p class="item-anime__duration">Duration: <%= anime.duration %></p>
-              <p class="item-anime__score">Score: <%= anime.score %></p>
-              <p class="item-anime__popularity">Popularity: <%= anime.popularity %></p>
-              <p class="item-anime__yrating">Y-Rating: <%= anime.yrating %></p>
-              <p class="item-anime__studio">Studio: <%= anime.studio_id %></p>
-              <p class="item-anime__status">Status: <%= anime.status.present? ? anime.status.capitalize : 'Unknown' %></p>
+              <p class="item-anime__episodes"><%= t("episodes") %>: <%= anime.episodes %></p>
+              <p class="item-anime__duration"><%= t("duration") %>: <%= anime.duration %></p>
+              <p class="item-anime__score"><%= t("score") %>: <%= anime.score %></p>
+              <p class="item-anime__popularity"><%= t("popularity") %>: <%= anime.popularity %></p>
+              <p class="item-anime__yrating"><%= t("y_rating") %>: <%= anime.yrating %></p>
+              <p class="item-anime__studio"><%= t("studio") %>: <%= anime.studio_id %></p>
+              <p class="item-anime__status"><%= t("status") %>: <%= anime.status.present? ? anime.status.capitalize : t("unknown") %></p>
             </div>
           <% end %>
         <% end %>
