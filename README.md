@@ -10,8 +10,6 @@ AnimeListing is a online resource dedicated to anime, providing an extensive dat
 3. [Scripts](#scripts)
 4. [Installation](#installation)
 
-## API
-
 ## Diagrams
 
 ### Database ER-diagram
@@ -19,4 +17,36 @@ AnimeListing is a online resource dedicated to anime, providing an extensive dat
 
 ## Scripts
 
+1. Default scripts:
+```sh
+    #Database migrate
+    rake db:migrate
+
+    #Seed data
+    rake db:seed
+```
 ## Installation
+1. Clone the repository from GitHub:
+```sh
+    git clone https://github.com/AndrasteCries/AnimeListing.git
+```
+2. Navigate to the project directory:
+```sh
+    cd EducationPlatform
+```
+3. Install dependencies using Bundler:
+```sh
+    bundle install
+```
+4. Configure the database:
+```sh
+    rake db:migrate
+```
+5. Start the application:
+```sh
+    rails server
+```
+6. Access the application in your web browser at:
+```sh
+    http://localhost:3000
+```
