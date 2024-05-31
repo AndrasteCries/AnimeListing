@@ -1,11 +1,11 @@
 class Person < ApplicationRecord
 
-  has_many :anime_characters
-  has_many :animes, through: :anime_characters
-  has_many :comments, dependent: :destroy
+  belongs_to :studio
 
   enum spec: {
-
+    producer: 0,
+    mangaka: 1,
+    seyu: 2
   }
 
   validates :name, presence: true

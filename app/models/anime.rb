@@ -12,6 +12,7 @@ class Anime < ApplicationRecord
   has_many :anime_characters
   has_many :characters, through: :anime_characters
 
+  belongs_to :studio
 
   enum status: {
     ongoing: 0,
