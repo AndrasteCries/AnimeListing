@@ -58,8 +58,9 @@
 
         <div class="input-box">
           <%= form.label :studio_id, t("studio") %>
-          <%= form.number_field :studio_id, class: "input" %>
+          <%= form.collection_select :studio_id, Studio.all, :id, :name, {}, class: "input" %>
         </div>
+
 
         <div class="input-box">
           <%= form.label :status, t("status") %>
@@ -110,7 +111,7 @@
         </div>
       <% end %>
       <div class="button-center">
-        <%= link_to t("back"), characters_path(@character), class: "button" %>
+        <%= link_to t("back"), animes_path, class: "button" %>
       </div>
     </div>
   </div>

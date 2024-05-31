@@ -83,7 +83,8 @@
                     <div class="user-anime-list__rate"><%= user_rate.score %></div>
                     <div class="user-anime-list__rate"><%= user_rate.episodes %></div>
                     <% if user_signed_in? && current_user.id == @user.id %>
-                      <div class="user-anime-list__rate">                        <%= button_to t('actions.delete'), user_rate_path(user_rate), method: :delete, data: { confirm: t('actions.confirm') }, class: "btn btn-danger" %>
+                      <div class="user-anime-list__rate">
+                        <%= button_to t('actions.delete'), user_rate_path(user_rate), method: :delete, data: { confirm: t('actions.confirm') }, class: "btn btn-danger" %>
                       </div>
                     <% end %>
                   </li>
@@ -91,7 +92,7 @@
               </ul>
             </div>
           <% else %>
-            <p class="title-small"><%= t('user_rates.no_grades', status: t("user_rates.statuses.#{status}")) %></p>
+            <p class="title-small">No grades in <%=  t("user_rates.statuses.#{status}") %></p>
           <% end %>
         <% end %>
       </div>

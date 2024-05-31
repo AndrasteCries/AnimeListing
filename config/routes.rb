@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   ActiveAdmin.routes(self)
+  devise_for :admin_users, ActiveAdmin::Devise.config
   root "application#index"
   scope "/:locale" do
-    devise_for :admin_users, ActiveAdmin::Devise.config
     devise_for :users, path: "users", controllers: {
       session: "users/sessions",
       registrations: "users/registrations"
