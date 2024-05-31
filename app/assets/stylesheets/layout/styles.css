@@ -579,74 +579,6 @@ textarea {
     justify-content: center;
 }
 
-.item-anime {
-    cursor: pointer;
-    -ms-grid-column-align: center;
-    justify-self: center;
-    width: 100%;
-    /*height: -webkit-fit-content;*/
-    /*height: -moz-fit-content;*/
-    height: fit-content;
-    max-width: 14.375rem;
-    display: -ms-grid;
-    display: grid;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    background-color: var(--primary);
-    border-radius: 1rem;
-    overflow: hidden;
-}
-
-.item-anime__image {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    max-height: 18.75rem;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.item-anime__image img {
-    aspect-ratio: 250/350;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.item-anime__rating {
-    position: absolute;
-    /*width: -webkit-fit-content;*/
-    /*width: -moz-fit-content;*/
-    width: fit-content;
-    /*height: -webkit-fit-content;*/
-    /*height: -moz-fit-content;*/
-    height: fit-content;
-    top: 5%;
-    left: 0;
-    font-size: 1rem;
-    padding: 0.625rem 1.25rem;
-    font-weight: 500;
-    border-radius: 0 0.625rem 0.625rem 0;
-    background-color: var(--blue-hover);
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-    pointer-events: none;
-}
-
-.item-anime__body {
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.item-anime__name {
-    text-align: center;
-    font-size: 1.125rem;
-    font-weight: 500;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
 
 .login {
     padding-top: 6.25rem;
@@ -1777,4 +1709,237 @@ body::after {
         transform: scale(1);
 
     }
+}
+.anime__items {
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.item-anime {
+    cursor: pointer;
+    -ms-grid-column-align: center;
+    justify-self: center;
+    width: 100%;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    max-width: 14.375rem;
+    min-width: 280px;
+    display: -ms-grid;
+    display: grid;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background-color: var(--primary);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.item-anime__image {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-height: 18.75rem;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.item-anime__image img {
+    aspect-ratio: 250/350;
+}
+
+.item-anime__rating {
+    position: absolute;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    top: 5%;
+    left: 0;
+    font-size: 1rem;
+    padding: 0.625rem 1.25rem;
+    font-weight: 500;
+    border-radius: 0 0.625rem 0.625rem 0;
+    background-color: var(--blue-hover);
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    pointer-events: none;
+}
+
+.item-anime__body {
+    padding: 1.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    gap: 0.625rem;
+}
+
+.item-anime__name {
+    text-align: center;
+    font-size: 1.125rem;
+    font-weight: 500;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.item-anime__genre {
+    font-size: 0.875rem;
+}
+
+.filters {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    width: 100%;
+}
+
+.filters__items {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.875rem;
+}
+
+.filters__item {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 50%;
+    flex: 0 1 50%;
+    width: 100%;
+    background-color: var(--primary);
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+}
+
+.anime-filter__text {
+    font-weight: 500;
+    width: 100%;
+    cursor: default;
+    text-align: left;
+    border-radius: 0.3125rem;
+    position: relative;
+    list-style: none;
+}
+
+.anime-filter__text::marker,
+.anime-filter__text::-webkit-details-marker {
+    display: none;
+}
+
+._spoller-init .anime-filter__text {
+    cursor: pointer;
+}
+
+._spoller-init .anime-filter__text::before,
+._spoller-init .anime-filter__text::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    background-color: #ffffff;
+    height: 2px;
+    width: 10px;
+    -webkit-transition: -webkit-transform 0.5s ease 0s;
+    transition: -webkit-transform 0.5s ease 0s;
+    transition: transform 0.5s ease 0s;
+    transition: transform 0.5s ease 0s, -webkit-transform 0.5s ease 0s;
+}
+
+._spoller-init .anime-filter__text::before {
+    -webkit-transform: translate(-75%, -50%) rotate(40deg);
+    -ms-transform: translate(-75%, -50%) rotate(40deg);
+    transform: translate(-75%, -50%) rotate(40deg);
+}
+
+._spoller-init .anime-filter__text::after {
+    -webkit-transform: translate(0, -50%) rotate(-40deg);
+    -ms-transform: translate(0, -50%) rotate(-40deg);
+    transform: translate(0, -50%) rotate(-40deg);
+}
+
+._spoller-init .anime-filter__text._spoller-active::before {
+    -webkit-transform: translateX(-75%) rotate(-40deg);
+    -ms-transform: translateX(-75%) rotate(-40deg);
+    transform: translateX(-75%) rotate(-40deg);
+}
+
+._spoller-init .anime-filter__text._spoller-active::after {
+    -webkit-transform: rotate(40deg);
+    -ms-transform: rotate(40deg);
+    transform: rotate(40deg);
+}
+
+.anime-filter__items {
+    margin-top: 1rem;
+}
+
+.item-filter {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 1.25rem;
+}
+
+.item-filter:not(:last-child) {
+    margin-bottom: 0.625rem;
+}
+
+.item-filter__type {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.item-filter__number {
+    color: #fff;
+}
+
+.anime__block {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 1.25rem;
 }

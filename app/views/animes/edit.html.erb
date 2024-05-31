@@ -73,7 +73,7 @@
         </label>
 
         <div class="input-box">
-          <%= form.label :tags, t("select_tags") %><br>
+          <%= form.label :tags, "Select Tags" %><br>
           <% @tags.each do |tag| %>
             <label class="">
               <p><%= tag.name %></p>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="input-box">
-          <%= form.label :types, t("select_types") %><br>
+          <%= form.label :types, "Select Types" %><br>
           <% @types.each do |type| %>
             <label class="">
               <p><%= type.name %></p>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="input-box">
-          <%= form.label :genres, t("select_genres") %><br>
+          <%= form.label :genres, "Select Genres" %><br>
           <% @genres.each do |genre| %>
             <label class="">
               <p><%= genre.name %></p>

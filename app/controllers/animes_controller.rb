@@ -47,20 +47,35 @@ class AnimesController < ApplicationController
   # PATCH/PUT /animes/1
   def update
     respond_to do |format|
-      if @anime.update(anime_params)
-        @anime.tags = Tag.where(id: params[:anime].fetch(:tag_ids, []).reject(&:blank?))
-        @anime.types = Type.where(id: params[:anime].fetch(:type_ids, []).reject(&:blank?))
-        @anime.genres = Genre.where(id: params[:anime].fetch(:genre_ids, []).reject(&:blank?))
+      begin
+        # Обновление основной записи
+        if @anime.update(anime_params)
+          # Логи для отладки обновления
+          Rails.logger.debug("Anime main attributes updated successfully")
 
-        format.html { redirect_to @anime, notice: 'Anime was successfully updated.' }
-        format.json { render :show, status: :ok, location: @anime }
-      else
-        format.html { render :edit }
-        format.json { render json: @anime.errors, status: :unprocessable_entity }
+          # Обновление связей
+          update_associations
+
+          format.html { redirect_to @anime, notice: 'Anime was successfully updated.' }
+          format.json { render :show, status: :ok, location: @anime }
+        else
+          @tags = Tag.all
+          @types = Type.all
+          @genres = Genre.all
+
+          # Логи ошибок
+          Rails.logger.debug("Anime update failed: #{@anime.errors.full_messages.join(", ")}")
+
+          format.html { render :edit }
+          format.json { render json: @anime.errors, status: :unprocessable_entity }
+        end
+      rescue StandardError => e
+        Rails.logger.error("Error updating anime: #{e.message}")
+        format.html { redirect_to @anime, alert: 'Error updating anime.' }
+        format.json { render json: { error: 'Error updating anime.' }, status: :unprocessable_entity }
       end
     end
   end
-
 
   # DELETE /animes/1
   # DELETE /animes/1.json
@@ -73,7 +88,19 @@ class AnimesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
+  def update_associations
+    @anime.tags.clear
+    @anime.types.clear
+    @anime.genres.clear
+
+    @anime.tags = Tag.where(id: params[:anime].fetch(:tag_ids, []).reject(&:blank?))
+    @anime.types = Type.where(id: params[:anime].fetch(:type_ids, []).reject(&:blank?))
+    @anime.genres = Genre.where(id: params[:anime].fetch(:genre_ids, []).reject(&:blank?))
+
+    Rails.logger.debug("Anime associations updated with tags: #{@anime.tags.pluck(:id)}, types: #{@anime.types.pluck(:id)}, genres: #{@anime.genres.pluck(:id)}")
+  end
+
   def set_anime
     @anime = Anime.find(params[:id])
   end

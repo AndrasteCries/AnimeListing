@@ -1,16 +1,64 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <h1>
-        <%= t("hello") %> </h1>
-      <h1>
-        <%= t("hello") %></h1>
+
+      <h1 class="title"><%= t("hello") %></h1>
       <% if user_signed_in? and current_user.admin? %>
-        <h1>
-          <% t("hello") %> admin</h1>
+        <h1><%= t("hello") %> admin</h1>
       <% elsif user_signed_in? %>
-        <h1> Hello user</h1>
+        <h1>Hello user</h1>
       <% end %>
+
+      <div class="input-box">
+        <input type="text" placeholder='Search anime' class="anime__search input">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="m21 21-4.3-4.3"/>
+        </svg>
+      </div>
+
+      <div class="anime__block">
+        <aside class="anime__filters filters">
+          <div data-spollers class="filters__items">
+            <details class="filters__item anime-filter">
+              <summary class="anime-filter__text">Genre</summary>
+              <div class="anime-filter__items filter-items">
+                <% @genres.each do |genre| %>
+                  <div class="filter-items__item item-filter">
+                    <label class="item-filter__type">
+                      <%= genre.name %>
+                      <input type="checkbox" name=<%= genre.name %> id=<%= genre.name %> class="real-checkbox">
+                      <span class="custom-checkbox"></span>
+                    </label>
+                  </div>
+                <% end %>
+              </div>
+            </details>
+          </div>
+        </aside>
+        <div class="anime__items">
+          <% @latest_animes.each do |anime| %>
+            <%= link_to anime_path(anime), class: "item-anime" do %>
+              <div class="item-anime__image">
+                <%= image_tag anime.title_image if anime.title_image.attached? %>
+                <div class="item-anime__rating"><span>
+                  <% if anime.rating.present? %>
+                    <%= anime.rating %>
+                    <% else %>
+                  no rate
+                    </span>
+                    <% end %>
+                  </div>
+              </div>
+              <div class="item-anime__body">
+                <p class='item-anime__name'><%= anime.name %></p>
+                <p class="item-anime__genre"><%= anime.genres.first.name %></p>
+              </div>
+            <% end %>
+          <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
