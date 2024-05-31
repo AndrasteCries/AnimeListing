@@ -1,11 +1,11 @@
 class Person < ApplicationRecord
 
-  has_many :anime_characters
-  has_many :animes, through: :anime_characters
-  has_many :comments, dependent: :destroy
+  belongs_to :studio
 
   enum spec: {
-
+    producer: 0,
+    mangaka: 1,
+    seyu: 2
   }
 
   validates :name, presence: true
@@ -16,6 +16,6 @@ class Person < ApplicationRecord
   has_one_attached :image
 
   def self.ransackable_attributes(auth_object = nil)
-    ["id", "name", "japanese", "image", "website", "spec", "birth", "created_at", "updated_at"]
+    ["id", "name", "japanese", "website", "birthday", "spec", "studio_id", "created_at", "updated_at"]
   end
 end
