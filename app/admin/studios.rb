@@ -1,5 +1,5 @@
 ActiveAdmin.register Studio do
-  permit_params :name, :short_name, :japanese, :authors, :image, :website
+  permit_params :name, :short_name, :japanese, :image, :website
 
   # Якщо ви додаєте фільтри, переконайтеся, що вони правильні
   filter :name

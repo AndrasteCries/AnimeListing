@@ -27,6 +27,7 @@ ua:
   unknown_time: "Невідомий час"
   prohibited_anime_save: "%{count} помилка(ок) заважає зберегти це аніме:"
   name: "Ім'я"
+  short_name: "Коротке ім'я"
   select_tags: "Виберіть теги"
   select_types: "Виберіть типи"
   select_genres: "Виберіть жанри"
@@ -42,6 +43,7 @@ ua:
   new_character: "Новий персонаж"
   default_anime_name: "Невідоме аніме"
   image: "Зображення"
+  website: "Веб-сайт"
   character:
     japanese: "Японське ім'я"
     full_name: "Повне ім'я"

@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :topic_comments, dependent: :destroy
 
   enum role: { user: 0, moderator: 1, admin: 2 }
+
+  validates :password, length: { minimum: 6 }, if: -> { password.present? }
   
   def admin?
     role == 'admin'

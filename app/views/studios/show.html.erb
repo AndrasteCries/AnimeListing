@@ -1,0 +1,23 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+      <h1 class="title"><%= @studio.name %></h1>
+      <div class="input-box">
+        <p><%= t("short_name") %>:</p>
+        <p class="input"><%= @studio.short_name %></p>
+      </div>
+      <div class="input-box">
+        <p><%= t("japanese") %></p>
+        <p class="input"><%= @studio.japanese %></p>
+      </div>
+      <div class="input-box">
+        <p><%= t("website") %>:</p>
+        <p class="input"><%= link_to @studio.website, "http://#{@studio.website}", target: "_blank" %></p>
+      </div>
+      <% if user_signed_in? && current_user.admin? %>
+        <%= link_to t("edit"), edit_studio_path(@studio), class: 'button' %>
+      <% end %>
+      <%= link_to t("studio.back"), request.referer, class: 'button' %>
+    </div>
+  </div>
+</div>

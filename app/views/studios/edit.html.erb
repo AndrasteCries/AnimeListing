@@ -1,0 +1,47 @@
+<div class="anime">
+  <div class="anime__container">
+    <div class="anime__body">
+      <h1 class="title-small"><%= t("edit_studio") %></h1>
+      <%= form_with(model: @studio, local: true, html: { class: "login__form", style: "display: flex; align-items: center" }) do |form| %>
+
+        <div class="input-box">
+          <%= form.label :name, t("name") %>
+          <%= form.text_field :name, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :short_name, t("short_name") %>
+          <%= form.text_field :short_name, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :japanese, t("japanese") %>
+          <%= form.text_field :japanese, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :website, t("website") %>
+          <%= form.text_field :website, class: "input" %>
+        </div>
+
+        <div class="input-box">
+          <%= form.label :anime_ids, t("select_animes") %>
+          <%= form.select :anime_ids, options_for_select(Anime.all.map { |anime| [anime.name, anime.id] },
+                                                         @studio.anime_ids), {},
+                          { multiple: true, data: { scroll: "130", class_modif: "form" } } %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit t("update"), class: "button" %>
+        </div>
+      <% end %>
+      <div class="button-center">
+        <%= link_to t("back"), studio_path(@studio), class: "button" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :javascript do %>
+  <%= javascript_include_tag 'multyselect' %>
+<% end %>

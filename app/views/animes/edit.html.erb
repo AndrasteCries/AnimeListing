@@ -1,7 +1,7 @@
 <div class="anime">
   <div class="anime__container">
     <div class="anime__body">
-      <h1><%= t("new_anime") %></h1>
+      <h1><%= t("edit_anime") %></h1>
 
       <%= form_with(model: @anime, html: { class: "login__form", style: "display: flex; align-items: center" }, local: true) do |form| %>
         <% if @anime.errors.any? %>
@@ -106,7 +106,7 @@
         </div>
 
         <div class="actions">
-          <%= form.submit t("create"), class: "button" %>
+          <%= form.submit t("update"), class: "button" %>
         </div>
       <% end %>
       <div class="button-center">

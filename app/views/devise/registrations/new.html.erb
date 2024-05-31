@@ -23,6 +23,9 @@
         <div class="input-box">
           <%= f.label :password, t("devise.registrations.new.password") %>
           <%= f.password_field :password, placeholder: t("devise.registrations.new.password"), class: "login__input input", autocomplete: "new-password" %>
+          <% if @user.errors[:password].present? %>
+            <div class="error-message" style="color:#ff0000;"><%= @user.errors[:password].first %></div>
+          <% end %>
         </div>
 
         <div class="input-box">

@@ -69,6 +69,10 @@
             <% end %>
           </ul>
         </div>
+        <div class="input-box">
+          <p><%= t("studio") %>:</p>
+          <%= link_to @anime.studio.name, studio_path(@anime.studio), class: "input" %>
+        </div>
 
         <div class="input-box">
           <p><%= t("types") %>:</p>
@@ -115,7 +119,7 @@
         <ul>
           <% @anime.comments.each do |comment| %>
             <li class="comment">
-              <% if comment.user.present? %>
+              <% if comment.user.present? && comment.user.image.attached? %>
                 <%= image_tag(comment.user.image, alt: comment.user.name) %>
                 <strong><%= comment.user.nickname %>:</strong>
               <% end %>

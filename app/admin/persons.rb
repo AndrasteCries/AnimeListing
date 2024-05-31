@@ -1,18 +1,30 @@
 ActiveAdmin.register Person do
+  permit_params :name, :japanese, :website, :birthday, :spec, :studio_id, :image
 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # Uncomment all parameters which should be permitted for assignment
-  #
-  # permit_params :name, :japanese, :website, :birthday, :spec, :studio_id
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:name, :japanese, :website, :birthday, :spec, :studio_id]
-  #   permitted << :other if params[:action] == 'create' && current_user.admin?
-  #   permitted
-  # end
-  
+  index do
+    selectable_column
+    id_column
+    column :name
+    column :japanese
+    column :website
+    column :birthday
+    column :spec
+    column :image
+    column :studio
+    column :created_at
+    actions
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :japanese
+      f.input :website
+      f.input :birthday
+      f.input :spec
+      f.input :studio
+      f.input :image, as: :file
+    end
+    f.actions
+  end
 end

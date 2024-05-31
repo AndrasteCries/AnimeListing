@@ -25,4 +25,8 @@ class Anime < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["id", "name", "description", "episodes", "duration", "score", "popularity", "rating", "yrating", "status", "created_at", "updated_at", "studio_id"]
   end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["anime_characters", "anime_genres", "anime_tags", "anime_types", "characters", "comments", "genres", "studio", "tags", "title_image_attachment", "title_image_blob", "types", "user_rates"]
+  end
 end

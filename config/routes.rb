@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     end
     resources :user_rates
     resources :user
+
+    resources :studios
+
     get "users/:id/", to: "user#show", as: :user_profile
     get "users/:id/edit", to: "user#edit", as: :edit_user_profile
     get "up" => "rails/health#show", as: :rails_health_check
