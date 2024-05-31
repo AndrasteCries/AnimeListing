@@ -193,14 +193,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_28_173447) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "topic_comments", force: :cascade do |t|
+  create_table "topic_comments", id: :bigint, default: -> { "nextval('topic_comment_id_seq'::regclass)" }, force: :cascade do |t|
     t.text "text", null: false
     t.datetime "date"
     t.bigint "topic_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.index ["topic_id"], name: "index_topic_comments_on_topic_id"
+    t.index ["topic_id"], name: "index_topic_comment_on_topic_id"
     t.index ["user_id"], name: "index_topic_comments_on_user_id"
   end
 
