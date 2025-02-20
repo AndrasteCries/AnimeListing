@@ -1,8 +1,14 @@
-#!/bin/bash -e
+#!/bin/bash
+set -e
 
-# If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
-  ./bin/rails db:prepare
-fi
+# Wait for PostgreSQL to be ready
+until pg_isready -h db -p 5432 -U myuser -d myapp_development; do
+  echo "Waiting for database..."
+  sleep 1
+done
 
-exec "${@}"
+# Prepare database
+bundle exec rails db:prepare
+
+# Start the app
+exec "$@"

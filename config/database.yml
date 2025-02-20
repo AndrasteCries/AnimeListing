@@ -1,23 +1,20 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  database: anime_listing
-  username: postgres
-  password: root
-  host: localhost
-  port: 5432
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
+  host: <%= ENV.fetch("DB_HOST", "db") %>
+  username: <%= ENV.fetch("POSTGRES_USER", "myuser") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "mypassword") %>
+  database: <%= ENV.fetch("POSTGRES_DB", "myapp_development") %>
 
 development:
   <<: *default
-  database: anime_listing_development
+  database: myapp_development
 
 test:
   <<: *default
-  database: anime_listing_test
+  database: myapp_test
 
 production:
   <<: *default
-  database: anime_listing_production
-  username: anime_listing
-  password: <%= ENV["ANIME_LISTING_DATABASE_PASSWORD"] %>
+  database: myapp_production
